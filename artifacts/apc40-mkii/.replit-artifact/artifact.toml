@@ -1,0 +1,31 @@
+kind = "web"
+previewPath = "/"
+title = "APC40 MKII Virtual Layout"
+version = "1.0.0"
+id = "artifacts/apc40-mkii"
+router = "path"
+
+[[integratedSkills]]
+name = "react-vite"
+version = "1.0.0"
+
+[[services]]
+name = "web"
+paths = [ "/" ]
+localPort = 21849
+
+[services.development]
+run = "pnpm --filter @workspace/apc40-mkii run dev"
+
+[services.production]
+build = [ "pnpm", "--filter", "@workspace/apc40-mkii", "run", "build" ]
+publicDir = "artifacts/apc40-mkii/dist/public"
+serve = "static"
+
+[[services.production.rewrites]]
+from = "/*"
+to = "/index.html"
+
+[services.env]
+PORT = "21849"
+BASE_PATH = "/"
