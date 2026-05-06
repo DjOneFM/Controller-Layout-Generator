@@ -251,6 +251,16 @@ export default function Home() {
     localStorage.removeItem(STORAGE_KEY);
   };
 
+  const exportJson = () => {
+    const blob = new Blob([JSON.stringify(zones, null, 2)], { type: "application/json" });
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "apc40-mkii-zones.json";
+    a.click();
+    URL.revokeObjectURL(url);
+  };
+
   const exitCalibrate = () => {
     save();
     setCalibrating(false);
@@ -283,6 +293,12 @@ export default function Home() {
               style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #f97316", background: "transparent", color: "#f97316", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}
             >
               Calibrate Zones
+            </button>
+            <button
+              onClick={exportJson}
+              style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #38bdf8", background: "transparent", color: "#38bdf8", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}
+            >
+              Export JSON
             </button>
           </>
         ) : (
