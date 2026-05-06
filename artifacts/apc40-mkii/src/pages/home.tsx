@@ -235,6 +235,8 @@ export default function Home() {
   const [activeZone, setActiveZone] = useState<string | null>(null);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
+  const [showExport, setShowExport] = useState(false);
+  const [copied, setCopied] = useState(false);
 
   const updateZone = useCallback((updated: Zone) => {
     setZones((prev) => prev.map((z) => (z.id === updated.id ? updated : z)));
@@ -251,14 +253,15 @@ export default function Home() {
     localStorage.removeItem(STORAGE_KEY);
   };
 
-  const exportJson = () => {
-    const blob = new Blob([JSON.stringify(zones, null, 2)], { type: "application/json" });
-    const url = URL.createObjectURL(blob);
-    const a = document.createElement("a");
-    a.href = url;
-    a.download = "apc40-mkii-zones.json";
-    a.click();
-    URL.revokeObjectURL(url);
+  const jsonText = JSON.stringify(zones, null, 2);
+
+  const exportJson = () => setShowExport(true);
+
+  const copyJson = () => {
+    navigator.clipboard.writeText(jsonText).then(() => {
+      setCopied(true);
+      setTimeout(() => setCopied(false), 2000);
+    });
   };
 
   const exitCalibrate = () => {
@@ -369,6 +372,66 @@ export default function Home() {
         <div style={{ fontSize: 11, fontFamily: "monospace", color: "#94a3b8", flexShrink: 0 }}>
           Selected: <strong style={{ color: "#e2e8f0" }}>{zones.find(z => z.id === selectedId)?.label}</strong>
           {" — "}drag to move · corner handles to resize
+        </div>
+      )}
+
+      {/* Export modal */}
+      {showExport && (
+        <div
+          onClick={() => setShowExport(false)}
+          style={{
+            position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)",
+            display: "flex", alignItems: "center", justifyContent: "center",
+            zIndex: 200, padding: 24,
+          }}
+        >
+          <div
+            onClick={(e) => e.stopPropagation()}
+            style={{
+              background: "#16161e", border: "1px solid #2a2a38", borderRadius: 10,
+              width: "min(660px, 100%)", maxHeight: "80vh",
+              display: "flex", flexDirection: "column", gap: 0,
+              boxShadow: "0 20px 60px rgba(0,0,0,0.8)",
+            }}
+          >
+            {/* Modal header */}
+            <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid #2a2a38" }}>
+              <span style={{ fontFamily: "monospace", fontSize: 13, color: "#e2e8f0" }}>
+                apc40-mkii-zones.json
+                <span style={{ marginLeft: 10, color: "#64748b", fontSize: 11 }}>
+                  {zones.length} zones
+                </span>
+              </span>
+              <div style={{ display: "flex", gap: 8 }}>
+                <button
+                  onClick={copyJson}
+                  style={{
+                    padding: "4px 14px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11,
+                    border: `1px solid ${copied ? "#22c55e" : "#38bdf8"}`,
+                    background: copied ? "#22c55e" : "transparent",
+                    color: copied ? "#000" : "#38bdf8",
+                    transition: "all 0.15s",
+                  }}
+                >
+                  {copied ? "Copied ✓" : "Copy to clipboard"}
+                </button>
+                <button
+                  onClick={() => setShowExport(false)}
+                  style={{ padding: "4px 10px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11, border: "1px solid #3a3a48", background: "transparent", color: "#94a3b8" }}
+                >
+                  ✕
+                </button>
+              </div>
+            </div>
+            {/* JSON content */}
+            <pre style={{
+              margin: 0, padding: 16, overflowY: "auto", flex: 1,
+              fontFamily: "monospace", fontSize: 11, color: "#94a3b8",
+              lineHeight: 1.6, whiteSpace: "pre", background: "transparent",
+            }}>
+              {jsonText}
+            </pre>
+          </div>
         </div>
       )}
     </div>
