@@ -348,7 +348,7 @@ export default function Home() {
           ref={imgRef}
           src={apcPhoto}
           alt="APC40 MKII"
-          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none" }}
+          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none", filter: "brightness(0.85)" }}
           draggable={false}
           onClick={() => calibrating && setSelectedId(null)}
         />
