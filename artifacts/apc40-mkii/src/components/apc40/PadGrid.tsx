@@ -1,77 +1,157 @@
 import { cn } from "@/lib/utils";
 import Knob from "./Knob";
 
+const PAD_W = 70;
+const PAD_H = 52;
+const PAD_GAP = 5;
+const SCENE_W = 38;
+
 const padColors = [
-  "bg-red-500/80 shadow-[0_0_10px_rgba(239,68,68,0.5)]",
-  "bg-green-500/80 shadow-[0_0_10px_rgba(34,197,94,0.5)]",
-  "bg-blue-500/80 shadow-[0_0_10px_rgba(59,130,246,0.5)]",
-  "bg-pink-500/80 shadow-[0_0_10px_rgba(236,72,153,0.5)]",
-  "bg-teal-500/80 shadow-[0_0_10px_rgba(20,184,166,0.5)]",
-  "bg-orange-500/80 shadow-[0_0_10px_rgba(249,115,22,0.5)]",
-  "bg-purple-500/80 shadow-[0_0_10px_rgba(168,85,247,0.5)]",
-  "bg-yellow-500/80 shadow-[0_0_10px_rgba(234,179,8,0.5)]",
-  "bg-[#2a2a30]", // Off
+  { bg: "#e53e2a", glow: "rgba(229,62,42,0.6)" },
+  { bg: "#e8830a", glow: "rgba(232,131,10,0.6)" },
+  { bg: "#c4a800", glow: "rgba(196,168,0,0.6)" },
+  { bg: "#22a85c", glow: "rgba(34,168,92,0.6)" },
+  { bg: "#1a9fcc", glow: "rgba(26,159,204,0.6)" },
+  { bg: "#5a5aee", glow: "rgba(90,90,238,0.6)" },
+  { bg: "#c44eb0", glow: "rgba(196,78,176,0.6)" },
+  { bg: "#e8622a", glow: "rgba(232,98,42,0.6)" },
 ];
+
+const OFF_PAD = { bg: "#252528", glow: "" };
+
+function seededColor(index: number) {
+  const seed = (index * 7 + 13) % 17;
+  if (seed < 10) return padColors[seed % padColors.length];
+  return OFF_PAD;
+}
+
+const gridW = 8 * PAD_W + 7 * PAD_GAP;
+const gridH = 5 * PAD_H + 4 * PAD_GAP;
 
 export default function PadGrid() {
   return (
-    <div className="flex flex-col gap-4">
-      {/* Top row: 8 assignable knobs */}
-      <div className="flex justify-between px-2">
+    <div style={{ display: "flex", flexDirection: "column", gap: 6 }}>
+      {/* Assignable knobs row — 8 above the 8 columns */}
+      <div style={{ display: "flex", gap: PAD_GAP, width: gridW }}>
         {Array.from({ length: 8 }).map((_, i) => (
-          <div key={`assign-knob-${i}`} className="flex flex-col items-center gap-1">
-            <Knob value={(i * 15) % 100} size="sm" ledColor="orange" />
-            <span className="text-[8px] font-mono text-[#5a5a63]">KNOB {i + 1}</span>
+          <div
+            key={`ak-${i}`}
+            style={{ width: PAD_W, display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}
+          >
+            <Knob value={30 + (i * 9) % 70} size="md" ledColor="orange" />
+            <span style={{ fontSize: 8, fontFamily: "monospace", color: "#5a5a66", letterSpacing: "0.08em", textTransform: "uppercase" }}>
+              {["PAN", "SEND", "USER", "KNOB 4", "KNOB 5", "KNOB 6", "KNOB 7", "KNOB 8"][i]}
+            </span>
           </div>
         ))}
       </div>
 
-      {/* Grid area: 8x5 pads + 5 scene launches */}
-      <div className="flex gap-2">
-        <div className="grid grid-cols-8 grid-rows-5 gap-2 flex-1">
+      {/* Pad grid + scene launches */}
+      <div style={{ display: "flex", gap: PAD_GAP, alignItems: "flex-start" }}>
+        {/* 8×5 pad grid */}
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: `repeat(8, ${PAD_W}px)`,
+            gridTemplateRows: `repeat(5, ${PAD_H}px)`,
+            gap: PAD_GAP,
+            width: gridW,
+            height: gridH,
+          }}
+        >
           {Array.from({ length: 40 }).map((_, i) => {
-            const isLit = Math.random() > 0.4;
-            const colorClass = isLit ? padColors[Math.floor(Math.random() * (padColors.length - 1))] : padColors[padColors.length - 1];
+            const c = seededColor(i);
+            const isLit = c !== OFF_PAD;
             return (
-              <div 
+              <div
                 key={`pad-${i}`}
-                className={cn(
-                  "w-full aspect-[4/3] rounded-sm border border-black/50 transition-all duration-75 relative overflow-hidden",
-                  colorClass,
-                  !isLit && "shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_1px_2px_rgba(0,0,0,0.5)]"
-                )}
+                style={{
+                  width: PAD_W,
+                  height: PAD_H,
+                  background: c.bg,
+                  borderRadius: 3,
+                  border: "1px solid rgba(0,0,0,0.5)",
+                  boxShadow: isLit ? `0 0 10px ${c.glow}, inset 0 1px 1px rgba(255,255,255,0.15)` : "inset 0 1px 1px rgba(255,255,255,0.04), 0 1px 2px rgba(0,0,0,0.4)",
+                  position: "relative",
+                  overflow: "hidden",
+                }}
               >
-                {/* Pad texture */}
-                <div className="absolute inset-0 bg-white/5 opacity-0 hover:opacity-100 transition-opacity" />
+                {isLit && (
+                  <div style={{ position: "absolute", inset: 0, background: "linear-gradient(135deg, rgba(255,255,255,0.1) 0%, transparent 60%)" }} />
+                )}
               </div>
             );
           })}
         </div>
-        
-        {/* Scene Launch Buttons */}
-        <div className="flex flex-col gap-2 w-10">
+
+        {/* Scene launch buttons */}
+        <div style={{ display: "flex", flexDirection: "column", gap: PAD_GAP, width: SCENE_W }}>
           {Array.from({ length: 5 }).map((_, i) => (
-            <div 
+            <div
               key={`scene-${i}`}
-              className="w-full flex-1 bg-[#2a2a30] rounded-sm border border-black/50 shadow-[inset_0_1px_1px_rgba(255,255,255,0.05),0_1px_2px_rgba(0,0,0,0.5)] relative flex items-center justify-center group"
+              style={{
+                width: SCENE_W,
+                height: PAD_H,
+                background: "#2a2a30",
+                borderRadius: 3,
+                border: "1px solid rgba(0,0,0,0.5)",
+                boxShadow: "inset 0 1px 1px rgba(255,255,255,0.05), 0 1px 2px rgba(0,0,0,0.5)",
+                display: "flex",
+                alignItems: "center",
+                justifyContent: "center",
+              }}
             >
-              <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-              <div className="w-1 h-1 rounded-full bg-green-500/20 group-hover:bg-green-500/80 transition-colors shadow-[0_0_4px_rgba(34,197,94,0)] group-hover:shadow-[0_0_4px_rgba(34,197,94,0.5)]" />
+              <div style={{ width: 6, height: 6, borderRadius: "50%", background: "rgba(34,197,94,0.25)", boxShadow: "0 0 4px rgba(34,197,94,0.2)" }} />
             </div>
           ))}
+        </div>
+
+        {/* SCENE LAUNCH label */}
+        <div style={{ display: "flex", flexDirection: "column", justifyContent: "flex-start", paddingTop: 4 }}>
+          <span style={{ fontSize: 7, fontFamily: "monospace", color: "#5a5a66", textTransform: "uppercase", letterSpacing: "0.08em", writingMode: "vertical-lr", transform: "rotate(180deg)", lineHeight: 1.2 }}>
+            Scene Launch
+          </span>
         </div>
       </div>
 
-      {/* Bottom row: Clip Stop */}
-      <div className="flex justify-between items-center pr-12">
-        <div className="flex gap-2 flex-1">
+      {/* Clip Stop row */}
+      <div style={{ display: "flex", gap: PAD_GAP, alignItems: "center" }}>
+        <div style={{ display: "flex", gap: PAD_GAP }}>
+          {/* CLIP STOP label on left */}
+          <div style={{ width: 20, display: "flex", alignItems: "center", justifyContent: "flex-end" }}>
+            <span style={{ fontSize: 6, fontFamily: "monospace", color: "#5a5a66", textTransform: "uppercase", letterSpacing: "0.06em", writingMode: "vertical-lr", transform: "rotate(180deg)" }}>
+              Clip Stop
+            </span>
+          </div>
           {Array.from({ length: 8 }).map((_, i) => (
-            <div key={`stop-${i}`} className="w-full aspect-[2/1] bg-[#3a3a40] rounded-sm border border-black/50 shadow-[inset_0_1px_0_rgba(255,255,255,0.1),0_1px_2px_rgba(0,0,0,0.5)] flex items-center justify-center hover:bg-[#4a4a50] transition-colors">
-            </div>
+            <div
+              key={`stop-${i}`}
+              style={{
+                width: PAD_W,
+                height: 26,
+                background: "#333338",
+                borderRadius: 3,
+                border: "1px solid rgba(0,0,0,0.5)",
+                boxShadow: "inset 0 1px 0 rgba(255,255,255,0.07), 0 1px 2px rgba(0,0,0,0.4)",
+              }}
+            />
           ))}
         </div>
-        <div className="absolute right-6 text-[8px] uppercase text-[#8a8a93] font-mono leading-tight text-right w-12">
-          Stop<br/>All<br/>Clips
+        {/* Stop All Clips button */}
+        <div style={{ marginLeft: PAD_GAP, display: "flex", flexDirection: "column", alignItems: "center", gap: 3 }}>
+          <div
+            style={{
+              width: SCENE_W,
+              height: 26,
+              background: "#3d1a1a",
+              border: "1px solid #6a2020",
+              borderRadius: 3,
+              boxShadow: "inset 0 1px 0 rgba(255,100,100,0.1)",
+            }}
+          />
+          <span style={{ fontSize: 6, fontFamily: "monospace", color: "#7a4040", textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "center" }}>
+            Stop<br/>All<br/>Clips
+          </span>
         </div>
       </div>
     </div>

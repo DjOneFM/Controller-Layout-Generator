@@ -1,43 +1,84 @@
-import { cn } from "@/lib/utils";
-
 interface FaderProps {
-  value: number; // 0-100
-  type?: "vertical" | "horizontal";
-  color?: "black" | "grey";
-  className?: string;
+  value?: number; // 0-100, position of fader cap
+  height?: number;
+  width?: number;
+  horizontal?: boolean;
 }
 
-export default function Fader({ value, type = "vertical", color = "black", className }: FaderProps) {
-  const isVertical = type === "vertical";
-  
+export default function Fader({ value = 70, height = 172, width = 28, horizontal = false }: FaderProps) {
+  const trackThickness = 5;
+  const capW = horizontal ? 22 : width - 4;
+  const capH = horizontal ? height - 4 : 28;
+
+  if (horizontal) {
+    const totalW = height; // repurpose height as length when horizontal
+    const capPos = (value / 100) * (totalW - capW);
+    return (
+      <div style={{ position: "relative", width: totalW, height: width, display: "flex", alignItems: "center" }}>
+        {/* Track */}
+        <div style={{
+          position: "absolute",
+          left: 0, right: 0,
+          top: "50%",
+          transform: "translateY(-50%)",
+          height: trackThickness,
+          background: "#0e0e11",
+          borderRadius: trackThickness / 2,
+          boxShadow: "inset 0 2px 4px rgba(0,0,0,0.8), 0 1px 0 rgba(255,255,255,0.04)",
+        }} />
+        {/* Cap */}
+        <div style={{
+          position: "absolute",
+          left: capPos,
+          top: "50%",
+          transform: "translateY(-50%)",
+          width: capW,
+          height: capH,
+          background: "linear-gradient(180deg, #3e3e48 0%, #2a2a32 100%)",
+          borderRadius: 3,
+          border: "1px solid #1a1a20",
+          boxShadow: "0 2px 6px rgba(0,0,0,0.6), inset 0 1px 1px rgba(255,255,255,0.12)",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+        }}>
+          <div style={{ width: 1, height: capH - 6, background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />
+        </div>
+      </div>
+    );
+  }
+
+  const capPos = ((100 - value) / 100) * (height - capH);
   return (
-    <div className={cn(
-      "relative flex items-center justify-center",
-      isVertical ? "w-8 h-40" : "w-40 h-8",
-      className
-    )}>
+    <div style={{ position: "relative", width, height, display: "flex", justifyContent: "center" }}>
       {/* Track */}
-      <div className={cn(
-        "bg-[#111113] rounded-full shadow-[inset_0_2px_4px_rgba(0,0,0,0.8),0_1px_0_rgba(255,255,255,0.05)]",
-        isVertical ? "w-1.5 h-full" : "h-1.5 w-full"
-      )} />
-      
+      <div style={{
+        position: "absolute",
+        top: 0, bottom: 0,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: trackThickness,
+        background: "#0e0e11",
+        borderRadius: trackThickness / 2,
+        boxShadow: "inset 0 2px 4px rgba(0,0,0,0.8), 1px 0 0 rgba(255,255,255,0.03)",
+      }} />
       {/* Cap */}
-      <div 
-        className={cn(
-          "absolute shadow-[0_4px_6px_rgba(0,0,0,0.5),inset_0_1px_1px_rgba(255,255,255,0.1)] border border-black",
-          color === "black" ? "bg-[#1e1e22]" : "bg-[#3a3a40]",
-          isVertical ? "w-5 h-8 rounded-sm" : "h-5 w-8 rounded-sm"
-        )}
-        style={{
-          [isVertical ? "bottom" : "left"]: `${value}%`,
-          transform: isVertical ? "translateY(50%)" : "translateX(-50%)"
-        }}
-      >
-        <div className={cn(
-          "absolute bg-white/50",
-          isVertical ? "top-1/2 -translate-y-1/2 left-1 right-1 h-0.5" : "left-1/2 -translate-x-1/2 top-1 bottom-1 w-0.5"
-        )} />
+      <div style={{
+        position: "absolute",
+        top: capPos,
+        left: "50%",
+        transform: "translateX(-50%)",
+        width: capW,
+        height: capH,
+        background: "linear-gradient(180deg, #3e3e48 0%, #2a2a32 100%)",
+        borderRadius: 3,
+        border: "1px solid #1a1a20",
+        boxShadow: "0 3px 8px rgba(0,0,0,0.7), inset 0 1px 1px rgba(255,255,255,0.12)",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+      }}>
+        <div style={{ height: 1, width: capW - 6, background: "rgba(255,255,255,0.35)", borderRadius: 1 }} />
       </div>
     </div>
   );

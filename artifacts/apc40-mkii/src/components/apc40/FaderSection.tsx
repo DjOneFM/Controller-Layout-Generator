@@ -1,36 +1,50 @@
 import Fader from "./Fader";
 import Knob from "./Knob";
 
+const PAD_W = 70;
+const PAD_GAP = 5;
+const FADER_HEIGHT = 168;
+const FADER_WIDTH = 28;
+
+const TRACK_POSITIONS = [60, 72, 65, 78, 55, 70, 68, 74];
+
 export default function FaderSection() {
   return (
-    <div className="flex flex-col mt-2 px-2 relative">
-      <div className="flex justify-between items-end gap-2 pr-12">
-        <div className="flex justify-between flex-1 relative h-40 border-t border-[#3a3a40]/30 pt-4">
-          <div className="absolute top-0 left-0 text-[8px] font-mono text-[#5a5a63] uppercase pt-1 tracking-widest font-bold">Track Volumes</div>
-          {Array.from({ length: 8 }).map((_, i) => (
-            <div key={`fader-${i}`} className="w-8 flex flex-col items-center">
-              <Fader value={70 + (Math.random() * 20 - 10)} type="vertical" />
+    <div style={{ display: "flex", flexDirection: "column", gap: 8 }}>
+      {/* Volume Faders row */}
+      <div style={{ display: "flex", gap: PAD_GAP, alignItems: "flex-start" }}>
+        {/* Spacer for "Clip Stop" label column */}
+        <div style={{ width: 20 }} />
+
+        {/* 8 track faders */}
+        <div style={{ display: "flex", gap: PAD_GAP }}>
+          {TRACK_POSITIONS.map((val, i) => (
+            <div key={`fader-${i}`} style={{ width: PAD_W, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+              <Fader value={val} height={FADER_HEIGHT} width={FADER_WIDTH} />
             </div>
           ))}
         </div>
-        
-        {/* Master Fader */}
-        <div className="w-12 flex flex-col items-center h-40 border-t border-[#3a3a40]/30 pt-4 justify-end">
-          <Fader value={85} type="vertical" color="grey" />
-          <div className="text-[8px] font-mono text-[#5a5a63] mt-2 uppercase text-center font-bold tracking-widest">Master</div>
+
+        {/* Master fader */}
+        <div style={{ marginLeft: PAD_GAP, display: "flex", flexDirection: "column", alignItems: "center", gap: 4 }}>
+          <Fader value={85} height={FADER_HEIGHT} width={FADER_WIDTH} />
+          <span style={{ fontSize: 7, fontFamily: "monospace", color: "#5a5a66", textTransform: "uppercase", letterSpacing: "0.1em" }}>Master</span>
+        </div>
+
+        {/* Cue Level knob */}
+        <div style={{ marginLeft: 12, display: "flex", flexDirection: "column", alignItems: "center", gap: 4, justifyContent: "flex-end", height: FADER_HEIGHT + 18 }}>
+          <Knob value={45} size="sm" ledColor="orange" />
+          <span style={{ fontSize: 7, fontFamily: "monospace", color: "#5a5a66", textTransform: "uppercase", letterSpacing: "0.06em", textAlign: "center", lineHeight: 1.2 }}>
+            Cue<br/>Level
+          </span>
         </div>
       </div>
-      
-      {/* Crossfader Area & Cue */}
-      <div className="flex justify-between mt-8 relative pl-16 pr-24 border-t border-[#3a3a40]/30 pt-6">
-        <div className="absolute top-2 left-16 text-[8px] font-mono text-[#5a5a63] font-bold">A</div>
-        <Fader value={50} type="horizontal" className="flex-1 max-w-[200px] mx-auto" />
-        <div className="absolute top-2 right-[20%] text-[8px] font-mono text-[#5a5a63] font-bold">B</div>
-        
-        <div className="absolute right-0 bottom-0 flex flex-col items-center gap-1">
-          <Knob value={40} size="sm" ledColor="orange" />
-          <span className="text-[8px] font-mono text-[#5a5a63] font-bold tracking-widest">CUE LEVEL</span>
-        </div>
+
+      {/* Crossfader row */}
+      <div style={{ display: "flex", alignItems: "center", gap: 10, paddingLeft: 20 }}>
+        <span style={{ fontSize: 9, fontFamily: "monospace", color: "#8a8a96", fontWeight: "bold" }}>A</span>
+        <Fader value={50} horizontal height={280} width={32} />
+        <span style={{ fontSize: 9, fontFamily: "monospace", color: "#8a8a96", fontWeight: "bold" }}>B</span>
       </div>
     </div>
   );
