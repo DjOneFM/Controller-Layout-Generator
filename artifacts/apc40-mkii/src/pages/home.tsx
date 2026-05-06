@@ -229,6 +229,8 @@ function Tooltip({ label, x, y }: { label: string; x: number; y: number }) {
   );
 }
 
+const IMAGE_FILENAME = "APC40mkIII_ortho_web_lg_1778105759979.webp";
+
 export default function Home() {
   const [zones, setZones] = useState<Zone[]>(loadZones);
   const [calibrating, setCalibrating] = useState(false);
@@ -237,6 +239,7 @@ export default function Home() {
   const [saved, setSaved] = useState(false);
   const [showExport, setShowExport] = useState(false);
   const [copied, setCopied] = useState(false);
+  const imgRef = useRef<HTMLImageElement>(null);
 
   const updateZone = useCallback((updated: Zone) => {
     setZones((prev) => prev.map((z) => (z.id === updated.id ? updated : z)));
@@ -253,9 +256,26 @@ export default function Home() {
     localStorage.removeItem(STORAGE_KEY);
   };
 
-  const jsonText = JSON.stringify(zones, null, 2);
+  const buildExportPayload = () => {
+    const img = imgRef.current;
+    return {
+      image: {
+        filename: IMAGE_FILENAME,
+        naturalWidth:  img?.naturalWidth  ?? null,
+        naturalHeight: img?.naturalHeight ?? null,
+        note: "Zone x/y/w/h values are percentages of the rendered image dimensions",
+      },
+      exportedAt: new Date().toISOString(),
+      zones,
+    };
+  };
 
-  const exportJson = () => setShowExport(true);
+  const [jsonText, setJsonText] = useState("");
+
+  const exportJson = () => {
+    setJsonText(JSON.stringify(buildExportPayload(), null, 2));
+    setShowExport(true);
+  };
 
   const copyJson = () => {
     navigator.clipboard.writeText(jsonText).then(() => {
@@ -325,6 +345,7 @@ export default function Home() {
       {/* Image + zones */}
       <div data-imgcontainer="" style={{ position: "relative", display: "inline-block", lineHeight: 0, flexShrink: 0 }}>
         <img
+          ref={imgRef}
           src={apcPhoto}
           alt="APC40 MKII"
           style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none" }}
