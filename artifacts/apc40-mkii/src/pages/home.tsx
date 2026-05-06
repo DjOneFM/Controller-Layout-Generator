@@ -348,10 +348,13 @@ export default function Home() {
           ref={imgRef}
           src={apcPhoto}
           alt="APC40 MKII"
-          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none", filter: "brightness(0.85)" }}
+          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none" }}
           draggable={false}
           onClick={() => calibrating && setSelectedId(null)}
         />
+
+        {/* Dim layer — sits above image, below zones */}
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.15)", pointerEvents: "none" }} />
 
         {calibrating ? (
           zones.map((zone) => (
