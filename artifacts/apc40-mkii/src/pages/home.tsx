@@ -354,7 +354,7 @@ export default function Home() {
         />
 
         {/* Dim layer — sits above image, below zones */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.15)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.30)", pointerEvents: "none" }} />
 
         {calibrating ? (
           zones.map((zone) => (
