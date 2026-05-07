@@ -502,7 +502,7 @@ export default function Home() {
           style={{ display: "block", width: "100%", height: "auto", userSelect: "none", touchAction: "pan-y" }}
           draggable={false}
         />
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.22)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.37)", pointerEvents: "none" }} />
 
         {calibrating ? (
           zones.map((zone) => (
