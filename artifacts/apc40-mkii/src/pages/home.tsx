@@ -7,13 +7,168 @@ export interface Zone {
   id: string;
   label: string;
   type: ZoneType;
-  x: number; // % of image width
-  y: number; // % of image height
+  x: number;
+  y: number;
   w: number;
   h: number;
 }
 
-const ZONE_COLORS: Record<ZoneType, { bg: string; border: string }> = {
+const RESOLUME_MAP: Record<string, string | null> = {
+  "ak-1": "Dashboard Dial Hue \u2014 Layer 1",
+  "ak-2": "Dashboard Dial Hue \u2014 Layer 2",
+  "ak-3": "Dashboard Dial Hue \u2014 Layer 3",
+  "ak-4": null,
+  "ak-5": null,
+  "ak-6": null,
+  "ak-7": null,
+  "ak-8": null,
+  "pad-r1-c1": "Clip Trigger \u2014 Row 1, Col 1",
+  "pad-r1-c2": "Clip Trigger \u2014 Row 1, Col 2",
+  "pad-r1-c3": "Clip Trigger \u2014 Row 1, Col 3",
+  "pad-r1-c4": "Clip Trigger \u2014 Row 1, Col 4",
+  "pad-r1-c5": "Clip Trigger \u2014 Row 1, Col 5",
+  "pad-r1-c6": "Clip Trigger \u2014 Row 1, Col 6",
+  "pad-r1-c7": "Clip Trigger \u2014 Row 1, Col 7",
+  "pad-r1-c8": null,
+  "pad-r2-c1": null,
+  "pad-r2-c2": null,
+  "pad-r2-c3": null,
+  "pad-r2-c4": null,
+  "pad-r2-c5": null,
+  "pad-r2-c6": null,
+  "pad-r2-c7": null,
+  "pad-r2-c8": null,
+  "pad-r3-c1": "Clip Trigger \u2014 Layer 1, Col 1",
+  "pad-r3-c2": "Clip Trigger \u2014 Layer 1, Col 2",
+  "pad-r3-c3": "Clip Trigger \u2014 Layer 1, Col 3",
+  "pad-r3-c4": "Clip Trigger \u2014 Layer 1, Col 4",
+  "pad-r3-c5": "Clip Trigger \u2014 Layer 1, Col 5",
+  "pad-r3-c6": "Clip Trigger \u2014 Layer 1, Col 6",
+  "pad-r3-c7": "Clip Trigger \u2014 Layer 1, Col 7",
+  "pad-r3-c8": null,
+  "pad-r4-c1": "Clip Trigger \u2014 Layer 2, Col 1",
+  "pad-r4-c2": "Clip Trigger \u2014 Layer 2, Col 2",
+  "pad-r4-c3": "Clip Trigger \u2014 Layer 2, Col 3",
+  "pad-r4-c4": "Clip Trigger \u2014 Layer 2, Col 4",
+  "pad-r4-c5": "Clip Trigger \u2014 Layer 2, Col 5",
+  "pad-r4-c6": "Clip Trigger \u2014 Layer 2, Col 6",
+  "pad-r4-c7": "Clip Trigger \u2014 Layer 2, Col 7",
+  "pad-r4-c8": null,
+  "pad-r5-c1": "Clip Trigger \u2014 Layer 3, Col 1",
+  "pad-r5-c2": "Clip Trigger \u2014 Layer 3, Col 2",
+  "pad-r5-c3": "Clip Trigger \u2014 Layer 3, Col 3",
+  "pad-r5-c4": "Clip Trigger \u2014 Layer 3, Col 4",
+  "pad-r5-c5": "Clip Trigger \u2014 Layer 3, Col 5",
+  "pad-r5-c6": "Clip Trigger \u2014 Layer 3, Col 6",
+  "pad-r5-c7": "Clip Trigger \u2014 Layer 3, Col 7",
+  "pad-r5-c8": null,
+  "scene-1": null,
+  "scene-2": null,
+  "scene-3": "Scene Launch 3",
+  "scene-4": "Scene Launch 4",
+  "scene-5": "Scene Launch 5",
+  "stop-all": "Stop All Clips",
+  "clip-stop-1": "Clear Layer 1",
+  "clip-stop-2": "Clear Layer 2",
+  "clip-stop-3": "Clear Layer 3",
+  "clip-stop-4": null,
+  "clip-stop-5": null,
+  "clip-stop-6": null,
+  "clip-stop-7": null,
+  "clip-stop-8": null,
+  "track-sel-1": "Next (A|B) / Previous Clip \u2014 Layer 1",
+  "track-sel-2": "Next (A|B) / Previous Clip \u2014 Layer 2",
+  "track-sel-3": "Next (A|B) / Previous Clip \u2014 Layer 3",
+  "track-sel-4": null,
+  "track-sel-5": null,
+  "track-sel-6": null,
+  "track-sel-7": null,
+  "track-sel-8": null,
+  "track-sel-master": "Master Track Selector",
+  "activator-1": "Solo \u2014 Layer 1",
+  "activator-2": "Solo \u2014 Layer 2",
+  "activator-3": "Solo \u2014 Layer 3",
+  "activator-4": null,
+  "activator-5": null,
+  "activator-6": null,
+  "activator-7": null,
+  "activator-8": null,
+  "crossfade-1": "Bypass \u2014 Layer 1",
+  "crossfade-2": "Bypass \u2014 Layer 2",
+  "crossfade-3": "Bypass \u2014 Layer 3",
+  "crossfade-4": null,
+  "crossfade-5": null,
+  "crossfade-6": null,
+  "crossfade-7": null,
+  "crossfade-8": null,
+  "solo-1": "Master Fader \u2014 Layer 1",
+  "solo-2": "Master Fader \u2014 Layer 2",
+  "solo-3": "Master Fader \u2014 Layer 3",
+  "solo-4": null,
+  "solo-5": null,
+  "solo-6": null,
+  "solo-7": null,
+  "solo-8": null,
+  "recarm-1": "Record Arm \u2014 Layer 1",
+  "recarm-2": "Record Arm \u2014 Layer 2",
+  "recarm-3": "Record Arm \u2014 Layer 3",
+  "recarm-4": null,
+  "recarm-5": null,
+  "recarm-6": null,
+  "recarm-7": null,
+  "recarm-8": null,
+  "fader-1": "Composition Master Fader",
+  "fader-2": "Layer Fader \u2014 Layer 2",
+  "fader-3": "Layer Fader \u2014 Layer 3",
+  "fader-4": null,
+  "fader-5": null,
+  "fader-6": null,
+  "fader-7": null,
+  "fader-8": null,
+  "fader-master": "Master Volume Fader",
+  "cue-level": "Cue Level",
+  "crossfader": null,
+  "pan": null,
+  "play": null,
+  "record": null,
+  "session": null,
+  "sends": null,
+  "metro": "BPM Resync",
+  "tap": "BPM Tap",
+  "tempo": "BPM Adjust",
+  "user": null,
+  "nudge-minus": null,
+  "nudge-plus": null,
+  "dc-knob-1": "Dashboard Dial \u2014 Composition 1",
+  "dc-knob-2": "Dashboard Dial \u2014 Composition 2",
+  "dc-knob-3": "Dashboard Dial \u2014 Composition 3",
+  "dc-knob-4": "Dashboard Dial \u2014 Composition 4",
+  "dc-knob-5": "Select Layer 1",
+  "dc-knob-6": "Select Layer 2",
+  "dc-knob-7": "Select Layer 3",
+  "dc-knob-8": "Eject All Clips / Preview Composition",
+  "dev-left": null,
+  "dev-right": null,
+  "bank-left": "Previous Deck",
+  "bank-right": "Next Deck",
+  "dev-on": null,
+  "dev-lock": null,
+  "clip-dev-view": "Playhead Active Clip",
+  "detail-view": null,
+  "shift": null,
+  "bank-btn": null,
+  "bsel-up": null,
+  "bsel-left": "Trigger Previous Column",
+  "bsel-down": null,
+  "bsel-right": "Trigger Next Column",
+};
+
+const MAPPED_STYLE   = { bg: "rgba(34,197,94,0.25)",  border: "#22c55e" };
+const UNMAPPED_STYLE = { bg: "rgba(239,68,68,0.20)",  border: "#ef4444" };
+const MAPPED_HOVER   = { bg: "rgba(34,197,94,0.50)",  border: "#4ade80" };
+const UNMAPPED_HOVER = { bg: "rgba(239,68,68,0.42)",  border: "#f87171" };
+
+const ZONE_COLORS_CALIBRATE: Record<ZoneType, { bg: string; border: string }> = {
   pad:             { bg: "rgba(255,200,0,0.22)",   border: "#ffc800" },
   knob:            { bg: "rgba(249,115,22,0.22)",  border: "#f97316" },
   button:          { bg: "rgba(148,163,184,0.22)", border: "#94a3b8" },
@@ -24,9 +179,8 @@ const ZONE_COLORS: Record<ZoneType, { bg: string; border: string }> = {
   slider:          { bg: "rgba(99,102,241,0.22)",  border: "#6366f1" },
 };
 
-const STORAGE_KEY = "apc40-zones-v2"; // bumped so old localStorage doesn't override
+const STORAGE_KEY = "apc40-zones-v2";
 
-// Calibrated 2026-05-07 against APC40mkIII_ortho_web_lg_1778105759979.webp (1200×750)
 const DEFAULT_ZONES: Zone[] = [
   { id: "ak-1", label: "Assignable Knob 1", type: "knob", x: 5, y: 7.5, w: 6.6, h: 9.5 },
   { id: "ak-2", label: "Assignable Knob 2", type: "knob", x: 12.1, y: 7.5, w: 6.6, h: 9.5 },
@@ -36,46 +190,46 @@ const DEFAULT_ZONES: Zone[] = [
   { id: "ak-6", label: "Assignable Knob 6", type: "knob", x: 40.5, y: 7.5, w: 6.6, h: 9.5 },
   { id: "ak-7", label: "Assignable Knob 7", type: "knob", x: 47.6, y: 7.5, w: 6.6, h: 9.5 },
   { id: "ak-8", label: "Assignable Knob 8", type: "knob", x: 54.7, y: 7.5, w: 6.6, h: 9.5 },
-  { id: "pad-r1-c1", label: "Clip Launch T1 S1", type: "pad", x: 5, y: 18.93, w: 6.77, h: 4.6 },
-  { id: "pad-r1-c2", label: "Clip Launch T2 S1", type: "pad", x: 12.1, y: 18.93, w: 6.6, h: 4.6 },
-  { id: "pad-r1-c3", label: "Clip Launch T3 S1", type: "pad", x: 19.2, y: 19.07, w: 6.6, h: 4.6 },
-  { id: "pad-r1-c4", label: "Clip Launch T4 S1", type: "pad", x: 26.22, y: 18.93, w: 6.6, h: 4.47 },
-  { id: "pad-r1-c5", label: "Clip Launch T5 S1", type: "pad", x: 33.4, y: 18.93, w: 6.6, h: 4.6 },
-  { id: "pad-r1-c6", label: "Clip Launch T6 S1", type: "pad", x: 40.5, y: 18.93, w: 6.6, h: 4.33 },
-  { id: "pad-r1-c7", label: "Clip Launch T7 S1", type: "pad", x: 47.43, y: 18.8, w: 6.6, h: 4.73 },
-  { id: "pad-r1-c8", label: "Clip Launch T8 S1", type: "pad", x: 54.37, y: 18.93, w: 6.6, h: 4.6 },
-  { id: "pad-r2-c1", label: "Clip Launch T1 S2", type: "pad", x: 5.33, y: 24.8, w: 6.43, h: 3.93 },
-  { id: "pad-r2-c2", label: "Clip Launch T2 S2", type: "pad", x: 12.35, y: 25.07, w: 6.35, h: 3.8 },
-  { id: "pad-r2-c3", label: "Clip Launch T3 S2", type: "pad", x: 19.37, y: 24.67, w: 6.43, h: 4.33 },
-  { id: "pad-r2-c4", label: "Clip Launch T4 S2", type: "pad", x: 26.55, y: 24.93, w: 6.35, h: 3.93 },
-  { id: "pad-r2-c5", label: "Clip Launch T5 S2", type: "pad", x: 33.4, y: 24.8, w: 6.6, h: 4.2 },
-  { id: "pad-r2-c6", label: "Clip Launch T6 S2", type: "pad", x: 40.58, y: 24.8, w: 6.35, h: 4.07 },
-  { id: "pad-r2-c7", label: "Clip Launch T7 S2", type: "pad", x: 47.68, y: 24.67, w: 6.35, h: 4.07 },
-  { id: "pad-r2-c8", label: "Clip Launch T8 S2", type: "pad", x: 54.7, y: 24.8, w: 6.35, h: 3.93 },
-  { id: "pad-r3-c1", label: "Clip Launch T1 S3", type: "pad", x: 5.42, y: 30.27, w: 6.35, h: 4.2 },
-  { id: "pad-r3-c2", label: "Clip Launch T2 S3", type: "pad", x: 12.27, y: 30.27, w: 6.52, h: 4.2 },
-  { id: "pad-r3-c3", label: "Clip Launch T3 S3", type: "pad", x: 19.28, y: 30.27, w: 6.43, h: 4.2 },
-  { id: "pad-r3-c4", label: "Clip Launch T4 S3", type: "pad", x: 26.38, y: 30.27, w: 6.43, h: 3.93 },
-  { id: "pad-r3-c5", label: "Clip Launch T5 S3", type: "pad", x: 33.32, y: 30.27, w: 6.6, h: 4.07 },
-  { id: "pad-r3-c6", label: "Clip Launch T6 S3", type: "pad", x: 40.67, y: 30.13, w: 6.27, h: 4.2 },
-  { id: "pad-r3-c7", label: "Clip Launch T7 S3", type: "pad", x: 47.6, y: 30.4, w: 6.35, h: 3.93 },
-  { id: "pad-r3-c8", label: "Clip Launch T8 S3", type: "pad", x: 54.62, y: 30.13, w: 6.52, h: 4.2 },
-  { id: "pad-r4-c1", label: "Clip Launch T1 S4", type: "pad", x: 5.25, y: 35.87, w: 6.6, h: 3.8 },
-  { id: "pad-r4-c2", label: "Clip Launch T2 S4", type: "pad", x: 12.43, y: 35.73, w: 6.52, h: 3.8 },
-  { id: "pad-r4-c3", label: "Clip Launch T3 S4", type: "pad", x: 19.2, y: 35.6, w: 6.6, h: 4.07 },
-  { id: "pad-r4-c4", label: "Clip Launch T4 S4", type: "pad", x: 26.55, y: 35.73, w: 6.35, h: 3.8 },
-  { id: "pad-r4-c5", label: "Clip Launch T5 S4", type: "pad", x: 33.57, y: 35.6, w: 6.35, h: 3.93 },
-  { id: "pad-r4-c6", label: "Clip Launch T6 S4", type: "pad", x: 40.5, y: 35.73, w: 6.35, h: 3.8 },
-  { id: "pad-r4-c7", label: "Clip Launch T7 S4", type: "pad", x: 47.6, y: 35.6, w: 6.43, h: 3.93 },
-  { id: "pad-r4-c8", label: "Clip Launch T8 S4", type: "pad", x: 54.78, y: 35.73, w: 6.35, h: 3.8 },
-  { id: "pad-r5-c1", label: "Clip Launch T1 S5", type: "pad", x: 5.42, y: 41.2, w: 6.27, h: 3.8 },
-  { id: "pad-r5-c2", label: "Clip Launch T2 S5", type: "pad", x: 12.35, y: 41.07, w: 6.35, h: 3.93 },
-  { id: "pad-r5-c3", label: "Clip Launch T3 S5", type: "pad", x: 19.53, y: 41.2, w: 6.18, h: 3.67 },
-  { id: "pad-r5-c4", label: "Clip Launch T4 S5", type: "pad", x: 26.55, y: 40.93, w: 6.35, h: 4.07 },
-  { id: "pad-r5-c5", label: "Clip Launch T5 S5", type: "pad", x: 33.48, y: 40.93, w: 6.43, h: 4.07 },
-  { id: "pad-r5-c6", label: "Clip Launch T6 S5", type: "pad", x: 40.75, y: 41.2, w: 6.35, h: 3.8 },
-  { id: "pad-r5-c7", label: "Clip Launch T7 S5", type: "pad", x: 47.85, y: 41.07, w: 6.18, h: 3.93 },
-  { id: "pad-r5-c8", label: "Clip Launch T8 S5", type: "pad", x: 54.87, y: 41.07, w: 6.18, h: 3.8 },
+  { id: "pad-r1-c1", label: "Clip Pad Row 1, Col 1", type: "pad", x: 5, y: 18.93, w: 6.77, h: 4.6 },
+  { id: "pad-r1-c2", label: "Clip Pad Row 1, Col 2", type: "pad", x: 12.1, y: 18.93, w: 6.6, h: 4.6 },
+  { id: "pad-r1-c3", label: "Clip Pad Row 1, Col 3", type: "pad", x: 19.2, y: 19.07, w: 6.6, h: 4.6 },
+  { id: "pad-r1-c4", label: "Clip Pad Row 1, Col 4", type: "pad", x: 26.22, y: 18.93, w: 6.6, h: 4.47 },
+  { id: "pad-r1-c5", label: "Clip Pad Row 1, Col 5", type: "pad", x: 33.4, y: 18.93, w: 6.6, h: 4.6 },
+  { id: "pad-r1-c6", label: "Clip Pad Row 1, Col 6", type: "pad", x: 40.5, y: 18.93, w: 6.6, h: 4.33 },
+  { id: "pad-r1-c7", label: "Clip Pad Row 1, Col 7", type: "pad", x: 47.43, y: 18.8, w: 6.6, h: 4.73 },
+  { id: "pad-r1-c8", label: "Clip Pad Row 1, Col 8", type: "pad", x: 54.37, y: 18.93, w: 6.6, h: 4.6 },
+  { id: "pad-r2-c1", label: "Clip Pad Row 2, Col 1", type: "pad", x: 5.33, y: 24.8, w: 6.43, h: 3.93 },
+  { id: "pad-r2-c2", label: "Clip Pad Row 2, Col 2", type: "pad", x: 12.35, y: 25.07, w: 6.35, h: 3.8 },
+  { id: "pad-r2-c3", label: "Clip Pad Row 2, Col 3", type: "pad", x: 19.37, y: 24.67, w: 6.43, h: 4.33 },
+  { id: "pad-r2-c4", label: "Clip Pad Row 2, Col 4", type: "pad", x: 26.55, y: 24.93, w: 6.35, h: 3.93 },
+  { id: "pad-r2-c5", label: "Clip Pad Row 2, Col 5", type: "pad", x: 33.4, y: 24.8, w: 6.6, h: 4.2 },
+  { id: "pad-r2-c6", label: "Clip Pad Row 2, Col 6", type: "pad", x: 40.58, y: 24.8, w: 6.35, h: 4.07 },
+  { id: "pad-r2-c7", label: "Clip Pad Row 2, Col 7", type: "pad", x: 47.68, y: 24.67, w: 6.35, h: 4.07 },
+  { id: "pad-r2-c8", label: "Clip Pad Row 2, Col 8", type: "pad", x: 54.7, y: 24.8, w: 6.35, h: 3.93 },
+  { id: "pad-r3-c1", label: "Clip Pad Row 3, Col 1", type: "pad", x: 5.42, y: 30.27, w: 6.35, h: 4.2 },
+  { id: "pad-r3-c2", label: "Clip Pad Row 3, Col 2", type: "pad", x: 12.27, y: 30.27, w: 6.52, h: 4.2 },
+  { id: "pad-r3-c3", label: "Clip Pad Row 3, Col 3", type: "pad", x: 19.28, y: 30.27, w: 6.43, h: 4.2 },
+  { id: "pad-r3-c4", label: "Clip Pad Row 3, Col 4", type: "pad", x: 26.38, y: 30.27, w: 6.43, h: 3.93 },
+  { id: "pad-r3-c5", label: "Clip Pad Row 3, Col 5", type: "pad", x: 33.32, y: 30.27, w: 6.6, h: 4.07 },
+  { id: "pad-r3-c6", label: "Clip Pad Row 3, Col 6", type: "pad", x: 40.67, y: 30.13, w: 6.27, h: 4.2 },
+  { id: "pad-r3-c7", label: "Clip Pad Row 3, Col 7", type: "pad", x: 47.6, y: 30.4, w: 6.35, h: 3.93 },
+  { id: "pad-r3-c8", label: "Clip Pad Row 3, Col 8", type: "pad", x: 54.62, y: 30.13, w: 6.52, h: 4.2 },
+  { id: "pad-r4-c1", label: "Clip Pad Row 4, Col 1", type: "pad", x: 5.25, y: 35.87, w: 6.6, h: 3.8 },
+  { id: "pad-r4-c2", label: "Clip Pad Row 4, Col 2", type: "pad", x: 12.43, y: 35.73, w: 6.52, h: 3.8 },
+  { id: "pad-r4-c3", label: "Clip Pad Row 4, Col 3", type: "pad", x: 19.2, y: 35.6, w: 6.6, h: 4.07 },
+  { id: "pad-r4-c4", label: "Clip Pad Row 4, Col 4", type: "pad", x: 26.55, y: 35.73, w: 6.35, h: 3.8 },
+  { id: "pad-r4-c5", label: "Clip Pad Row 4, Col 5", type: "pad", x: 33.57, y: 35.6, w: 6.35, h: 3.93 },
+  { id: "pad-r4-c6", label: "Clip Pad Row 4, Col 6", type: "pad", x: 40.5, y: 35.73, w: 6.35, h: 3.8 },
+  { id: "pad-r4-c7", label: "Clip Pad Row 4, Col 7", type: "pad", x: 47.6, y: 35.6, w: 6.43, h: 3.93 },
+  { id: "pad-r4-c8", label: "Clip Pad Row 4, Col 8", type: "pad", x: 54.78, y: 35.73, w: 6.35, h: 3.8 },
+  { id: "pad-r5-c1", label: "Clip Pad Row 5, Col 1", type: "pad", x: 5.42, y: 41.2, w: 6.27, h: 3.8 },
+  { id: "pad-r5-c2", label: "Clip Pad Row 5, Col 2", type: "pad", x: 12.35, y: 41.07, w: 6.35, h: 3.93 },
+  { id: "pad-r5-c3", label: "Clip Pad Row 5, Col 3", type: "pad", x: 19.53, y: 41.2, w: 6.18, h: 3.67 },
+  { id: "pad-r5-c4", label: "Clip Pad Row 5, Col 4", type: "pad", x: 26.55, y: 40.93, w: 6.35, h: 4.07 },
+  { id: "pad-r5-c5", label: "Clip Pad Row 5, Col 5", type: "pad", x: 33.48, y: 40.93, w: 6.43, h: 4.07 },
+  { id: "pad-r5-c6", label: "Clip Pad Row 5, Col 6", type: "pad", x: 40.75, y: 41.2, w: 6.35, h: 3.8 },
+  { id: "pad-r5-c7", label: "Clip Pad Row 5, Col 7", type: "pad", x: 47.85, y: 41.07, w: 6.18, h: 3.93 },
+  { id: "pad-r5-c8", label: "Clip Pad Row 5, Col 8", type: "pad", x: 54.87, y: 41.07, w: 6.18, h: 3.8 },
   { id: "scene-1", label: "Scene Launch 1", type: "button", x: 61.83, y: 19.2, w: 3.67, h: 4.07 },
   { id: "scene-2", label: "Scene Launch 2", type: "button", x: 61.83, y: 24.67, w: 3.75, h: 3.93 },
   { id: "scene-3", label: "Scene Launch 3", type: "button", x: 61.83, y: 30.13, w: 3.75, h: 4.07 },
@@ -151,7 +305,7 @@ const DEFAULT_ZONES: Zone[] = [
   { id: "tap", label: "Tap Tempo", type: "button", x: 83.17, y: 23.67, w: 3, h: 2.7 },
   { id: "tempo", label: "Tempo Knob", type: "knob", x: 88.58, y: 22.47, w: 6.08, h: 10.27 },
   { id: "user", label: "USER Mode", type: "button-orange", x: 69, y: 29.67, w: 3.25, h: 3.1 },
-  { id: "nudge-minus", label: "Nudge −", type: "button", x: 76.08, y: 29.93, w: 3.08, h: 2.43 },
+  { id: "nudge-minus", label: "Nudge \u2212", type: "button", x: 76.08, y: 29.93, w: 3.08, h: 2.43 },
   { id: "nudge-plus", label: "Nudge +", type: "button", x: 83.08, y: 30.07, w: 3, h: 2.43 },
   { id: "dc-knob-1", label: "Device Knob 1", type: "knob", x: 67, y: 36, w: 6.8, h: 9.37 },
   { id: "dc-knob-2", label: "Device Knob 2", type: "knob", x: 74.5, y: 36, w: 6.8, h: 9.77 },
@@ -161,20 +315,20 @@ const DEFAULT_ZONES: Zone[] = [
   { id: "dc-knob-6", label: "Device Knob 6", type: "knob", x: 74.5, y: 46.9, w: 6.8, h: 10 },
   { id: "dc-knob-7", label: "Device Knob 7", type: "knob", x: 81.67, y: 46.9, w: 6.8, h: 10 },
   { id: "dc-knob-8", label: "Device Knob 8", type: "knob", x: 88.75, y: 47.03, w: 6.8, h: 9.6 },
-  { id: "dev-left", label: "Device ←", type: "button", x: 69, y: 59.1, w: 3.33, h: 2.63 },
-  { id: "dev-right", label: "Device →", type: "button", x: 76, y: 59.37, w: 3.17, h: 2.37 },
-  { id: "bank-left", label: "Bank ←", type: "button", x: 83.08, y: 59.5, w: 3.25, h: 2.37 },
-  { id: "bank-right", label: "Bank →", type: "button", x: 90, y: 59.37, w: 3.33, h: 2.37 },
+  { id: "dev-left", label: "Device \u2190", type: "button", x: 69, y: 59.1, w: 3.33, h: 2.63 },
+  { id: "dev-right", label: "Device \u2192", type: "button", x: 76, y: 59.37, w: 3.17, h: 2.37 },
+  { id: "bank-left", label: "Bank \u2190", type: "button", x: 83.08, y: 59.5, w: 3.25, h: 2.37 },
+  { id: "bank-right", label: "Bank \u2192", type: "button", x: 90, y: 59.37, w: 3.33, h: 2.37 },
   { id: "dev-on", label: "Dev On/Off", type: "button", x: 69.08, y: 65.57, w: 3.17, h: 2.5 },
   { id: "dev-lock", label: "Dev Lock", type: "button", x: 76.08, y: 65.7, w: 3.25, h: 2.5 },
   { id: "clip-dev-view", label: "Clip/Dev View", type: "button", x: 82.92, y: 65.7, w: 3.67, h: 2.37 },
   { id: "detail-view", label: "Detail View", type: "button", x: 90, y: 65.43, w: 3.25, h: 2.77 },
   { id: "shift", label: "Shift", type: "button", x: 82.92, y: 72.27, w: 3.25, h: 4.2 },
   { id: "bank-btn", label: "Bank", type: "button", x: 89.83, y: 72, w: 3.5, h: 2.47 },
-  { id: "bsel-up", label: "Bank Select ↑", type: "button", x: 71, y: 72.3, w: 3.67, h: 3.43 },
-  { id: "bsel-left", label: "Bank Select ←", type: "button", x: 68.92, y: 72.5, w: 2, h: 8.23 },
-  { id: "bsel-down", label: "Bank Select ↓", type: "button", x: 71.08, y: 77.97, w: 3.58, h: 2.9 },
-  { id: "bsel-right", label: "Bank Select →", type: "button", x: 74.92, y: 72.37, w: 1.58, h: 8.77 },
+  { id: "bsel-up", label: "Bank Select \u2191", type: "button", x: 71, y: 72.3, w: 3.67, h: 3.43 },
+  { id: "bsel-left", label: "Bank Select \u2190", type: "button", x: 68.92, y: 72.5, w: 2, h: 8.23 },
+  { id: "bsel-down", label: "Bank Select \u2193", type: "button", x: 71.08, y: 77.97, w: 3.58, h: 2.9 },
+  { id: "bsel-right", label: "Bank Select \u2192", type: "button", x: 74.92, y: 72.37, w: 1.58, h: 8.77 },
 ];
 
 function loadZones(): Zone[] {
@@ -184,8 +338,6 @@ function loadZones(): Zone[] {
   } catch {}
   return DEFAULT_ZONES;
 }
-
-// ── Calibration zone drag/resize ──────────────────────────────────────────────
 
 type Handle = "move" | "n" | "s" | "e" | "w" | "nw" | "ne" | "sw" | "se";
 
@@ -211,7 +363,7 @@ function ZoneEditor({
   onSelect: (id: string) => void;
 }) {
   const dragRef = useRef<DragState | null>(null);
-  const colors = ZONE_COLORS[zone.type];
+  const colors = ZONE_COLORS_CALIBRATE[zone.type];
 
   const startDrag = useCallback((e: React.MouseEvent, handle: Handle) => {
     e.stopPropagation();
@@ -251,7 +403,7 @@ function ZoneEditor({
     window.addEventListener("mouseup", onUp);
   }, [zone, onUpdate, onSelect]);
 
-  const HS = 9; // handle size px
+  const HS = 9;
   const hStyle = (cursor: string, top?: string | number, left?: string | number, bottom?: string | number, right?: string | number, transform?: string): React.CSSProperties => ({
     position: "absolute", width: HS, height: HS, background: "#fff",
     border: "1.5px solid #000", borderRadius: 2, cursor,
@@ -301,18 +453,67 @@ function ZoneEditor({
   );
 }
 
-function Tooltip({ label, x, y }: { label: string; x: number; y: number }) {
+function Tooltip({ zone }: { zone: Zone }) {
+  const mapped = RESOLUME_MAP[zone.id] ?? null;
+  const isLeft = zone.x > 55;
+
   return (
     <div style={{
       position: "absolute",
-      ...(x > 55 ? { right: "105%" } : { left: "105%" }),
-      ...(y > 70 ? { bottom: 0 } : { top: 0 }),
-      background: "rgba(12,12,16,0.97)", border: "1px solid rgba(255,255,255,0.15)",
-      borderRadius: 5, padding: "5px 9px", whiteSpace: "nowrap",
-      fontSize: 11, fontFamily: "monospace", color: "#e2e8f0",
-      pointerEvents: "none", zIndex: 100, boxShadow: "0 4px 14px rgba(0,0,0,0.7)",
+      ...(isLeft ? { right: "105%" } : { left: "105%" }),
+      ...(zone.y > 70 ? { bottom: 0 } : { top: 0 }),
+      background: "#0c1220",
+      borderRadius: 10,
+      width: 280,
+      overflow: "hidden",
+      pointerEvents: "none",
+      zIndex: 100,
+      boxShadow: "0 10px 40px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.07)",
     }}>
-      {label}
+      <div style={{
+        padding: "10px 16px 8px",
+        borderBottom: "1px solid #1e293b",
+        background: "#111827",
+      }}>
+        <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4, fontFamily: "monospace" }}>
+          Hardware Control
+        </div>
+        <div style={{ fontSize: 14, color: "#e2e8f0", fontWeight: "bold", lineHeight: 1.3, fontFamily: "monospace" }}>
+          {zone.label}
+        </div>
+      </div>
+      <div style={{ padding: "10px 16px 12px" }}>
+        <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6, fontFamily: "monospace" }}>
+          Resolume Arena Default
+        </div>
+        {mapped ? (
+          <>
+            <div style={{ fontSize: 14, color: "#22c55e", fontWeight: "bold", lineHeight: 1.4, fontFamily: "monospace" }}>
+              {mapped}
+            </div>
+            <div style={{
+              display: "inline-block", borderRadius: 4, fontSize: 10, padding: "2px 9px",
+              marginTop: 8, fontWeight: "bold", letterSpacing: "0.05em", fontFamily: "monospace",
+              background: "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.5)",
+            }}>
+              ✓ MAPPED
+            </div>
+          </>
+        ) : (
+          <>
+            <div style={{ fontSize: 13, color: "#f87171", lineHeight: 1.4, fontFamily: "monospace" }}>
+              Not assigned in default mapping
+            </div>
+            <div style={{
+              display: "inline-block", borderRadius: 4, fontSize: 10, padding: "2px 9px",
+              marginTop: 8, fontWeight: "bold", letterSpacing: "0.05em", fontFamily: "monospace",
+              background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)",
+            }}>
+              ○ UNMAPPED — available to assign
+            </div>
+          </>
+        )}
+      </div>
     </div>
   );
 }
@@ -327,7 +528,11 @@ export default function Home() {
   const [saved, setSaved] = useState(false);
   const [showExport, setShowExport] = useState(false);
   const [copied, setCopied] = useState(false);
+  const [infoText, setInfoText] = useState<{ label: string; mapped: string | null } | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+
+  const mappedCount = zones.filter(z => RESOLUME_MAP[z.id] != null).length;
+  const unmappedCount = zones.length - mappedCount;
 
   const updateZone = useCallback((updated: Zone) => {
     setZones((prev) => prev.map((z) => (z.id === updated.id ? updated : z)));
@@ -378,7 +583,6 @@ export default function Home() {
     setSelectedId(null);
   };
 
-  // Persist whenever zones change in calibration mode
   useEffect(() => {
     if (calibrating) localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
   }, [zones, calibrating]);
@@ -387,17 +591,30 @@ export default function Home() {
     <div style={{
       minHeight: "100vh", width: "100%", background: "#0d0d0f",
       display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      padding: 16, boxSizing: "border-box", gap: 10,
+      padding: 12, boxSizing: "border-box", gap: 10,
+      fontFamily: "'Courier New', monospace",
     }}>
       {/* Toolbar */}
       <div style={{
-        display: "flex", alignItems: "center", gap: 10, flexShrink: 0,
-        background: "#1a1a20", border: "1px solid #2a2a32", borderRadius: 8, padding: "6px 12px",
+        display: "flex", alignItems: "center", gap: 10, flexShrink: 0, flexWrap: "wrap",
+        background: "#1a1a20", border: "1px solid #2a2a32", borderRadius: 8, padding: "8px 14px",
       }}>
         {!calibrating ? (
           <>
-            <span style={{ fontSize: 12, fontFamily: "monospace", color: "#8a8a96" }}>
-              APC40 mkII — hover any control to identify it
+            <span style={{ fontSize: 12, color: "#e2e8f0", fontWeight: "bold" }}>
+              APC40 mkII — Resolume Arena Mapping
+            </span>
+            <span style={{
+              fontSize: 11, padding: "4px 11px", borderRadius: 5,
+              background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)",
+            }}>
+              ● {mappedCount} mapped
+            </span>
+            <span style={{
+              fontSize: 11, padding: "4px 11px", borderRadius: 5,
+              background: "rgba(239,68,68,0.12)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)",
+            }}>
+              ● {unmappedCount} unmapped
             </span>
             <button
               onClick={() => setCalibrating(true)}
@@ -414,7 +631,7 @@ export default function Home() {
           </>
         ) : (
           <>
-            <span style={{ fontSize: 12, fontFamily: "monospace", color: "#fcd34d" }}>
+            <span style={{ fontSize: 12, color: "#fcd34d" }}>
               Calibration Mode — drag zones, resize with corner handles
             </span>
             <button onClick={save}  style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #22c55e", background: saved ? "#22c55e" : "transparent", color: saved ? "#000" : "#22c55e", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}>
@@ -430,19 +647,32 @@ export default function Home() {
         )}
       </div>
 
+      {/* Legend */}
+      {!calibrating && (
+        <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: "#8a8a96" }}>
+            <div style={{ width: 12, height: 12, borderRadius: 2, background: "rgba(34,197,94,0.35)", border: "1.5px solid #22c55e", flexShrink: 0 }} />
+            Mapped to Resolume
+          </div>
+          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: "#8a8a96" }}>
+            <div style={{ width: 12, height: 12, borderRadius: 2, background: "rgba(239,68,68,0.25)", border: "1.5px solid #ef4444", flexShrink: 0 }} />
+            Unmapped — available to assign
+          </div>
+        </div>
+      )}
+
       {/* Image + zones */}
       <div data-imgcontainer="" style={{ position: "relative", display: "inline-block", lineHeight: 0, flexShrink: 0 }}>
         <img
           ref={imgRef}
           src={apcPhoto}
           alt="APC40 MKII"
-          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 80px)", objectFit: "contain", userSelect: "none" }}
+          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 150px)", objectFit: "contain", userSelect: "none" }}
           draggable={false}
           onClick={() => calibrating && setSelectedId(null)}
         />
 
-        {/* Dim layer — sits above image, below zones */}
-        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.30)", pointerEvents: "none" }} />
+        <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.22)", pointerEvents: "none" }} />
 
         {calibrating ? (
           zones.map((zone) => (
@@ -456,29 +686,55 @@ export default function Home() {
           ))
         ) : (
           zones.map((zone) => {
-            const colors = ZONE_COLORS[zone.type];
+            const mapped = RESOLUME_MAP[zone.id] != null;
+            const s = mapped ? MAPPED_STYLE : UNMAPPED_STYLE;
+            const h = mapped ? MAPPED_HOVER : UNMAPPED_HOVER;
             const isActive = activeZone === zone.id;
             return (
               <div
                 key={zone.id}
-                onMouseEnter={() => setActiveZone(zone.id)}
-                onMouseLeave={() => setActiveZone(null)}
+                onMouseEnter={() => { setActiveZone(zone.id); setInfoText({ label: zone.label, mapped: RESOLUME_MAP[zone.id] ?? null }); }}
+                onMouseLeave={() => { setActiveZone(null); setInfoText(null); }}
                 style={{
                   position: "absolute",
                   left: `${zone.x}%`, top: `${zone.y}%`,
                   width: `${zone.w}%`, height: `${zone.h}%`,
-                  background: isActive ? colors.bg.replace("0.22", "0.5") : "transparent",
-                  border: `1.5px solid ${isActive ? colors.border : "transparent"}`,
+                  background: isActive ? h.bg : s.bg,
+                  border: `1.5px solid ${isActive ? h.border : s.border}`,
                   borderRadius: 3, cursor: "crosshair",
                   boxSizing: "border-box", transition: "background 0.08s, border-color 0.08s",
                 }}
               >
-                {isActive && <Tooltip label={zone.label} x={zone.x} y={zone.y} />}
+                {isActive && <Tooltip zone={zone} />}
               </div>
             );
           })
         )}
       </div>
+
+      {/* Info bar */}
+      {!calibrating && (
+        <div style={{ fontSize: 11, color: "#475569", minHeight: 18, flexShrink: 0 }}>
+          {infoText ? (
+            infoText.mapped ? (
+              <>
+                <span style={{ color: "#86efac" }}>{infoText.label}</span>
+                {" "}
+                <span style={{ color: "#334155" }}>→</span>
+                {" "}
+                <span style={{ color: "#22c55e" }}>{infoText.mapped}</span>
+              </>
+            ) : (
+              <>
+                <span style={{ color: "#fca5a5" }}>{infoText.label}</span>
+                <span style={{ color: "#ef4444" }}> — unmapped (available to assign)</span>
+              </>
+            )
+          ) : (
+            "Hover any control to see its Resolume mapping"
+          )}
+        </div>
+      )}
 
       {calibrating && selectedId && (
         <div style={{ fontSize: 11, fontFamily: "monospace", color: "#94a3b8", flexShrink: 0 }}>
@@ -506,7 +762,6 @@ export default function Home() {
               boxShadow: "0 20px 60px rgba(0,0,0,0.8)",
             }}
           >
-            {/* Modal header */}
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid #2a2a38" }}>
               <span style={{ fontFamily: "monospace", fontSize: 13, color: "#e2e8f0" }}>
                 apc40-mkii-zones.json
@@ -535,7 +790,6 @@ export default function Home() {
                 </button>
               </div>
             </div>
-            {/* JSON content */}
             <pre style={{
               margin: 0, padding: 16, overflowY: "auto", flex: 1,
               fontFamily: "monospace", fontSize: 11, color: "#94a3b8",
