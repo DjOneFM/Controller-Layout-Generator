@@ -269,7 +269,14 @@ const BAKED_ZONES: Zone[] = DEFAULT_ZONES.map((z) => ({
 function loadZones(): Zone[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) return JSON.parse(raw);
+    if (raw) {
+      const parsed: Zone[] = JSON.parse(raw);
+      // Always re-apply Resolume mappings — localStorage strips them on save
+      return parsed.map((z) => ({
+        ...z,
+        ...(RESOLUME[z.id] ? { resolume: RESOLUME[z.id] } : { resolume: undefined }),
+      }));
+    }
   } catch {}
   return BAKED_ZONES;
 }
