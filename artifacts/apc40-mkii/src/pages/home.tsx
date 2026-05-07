@@ -11,7 +11,6 @@ export interface Zone {
   y: number; // % of image height
   w: number;
   h: number;
-  resolume?: string; // Resolume Arena default mapping description
 }
 
 const ZONE_COLORS: Record<ZoneType, { bg: string; border: string }> = {
@@ -26,88 +25,6 @@ const ZONE_COLORS: Record<ZoneType, { bg: string; border: string }> = {
 };
 
 const STORAGE_KEY = "apc40-zones-v2"; // bumped so old localStorage doesn't override
-
-// ── Resolume Arena default mapping (from official MIDI shortcuts template) ─────
-const RESOLUME: Record<string, string> = {
-  // Assignable Knobs — First Dashboard Dial (Hue) per layer
-  "ak-1": "Dashboard Dial 1 (Hue) – Layer 1",
-  "ak-2": "Dashboard Dial 1 (Hue) – Layer 2",
-  "ak-3": "Dashboard Dial 1 (Hue) – Layer 3",
-  // Clip Launch Pads — Row 1=Layer 3, Row 2=Layer 2, Row 3=Layer 1 × Columns 1–7
-  "pad-r1-c1": "Clip Trigger – Layer 3, Column 1",
-  "pad-r1-c2": "Clip Trigger – Layer 3, Column 2",
-  "pad-r1-c3": "Clip Trigger – Layer 3, Column 3",
-  "pad-r1-c4": "Clip Trigger – Layer 3, Column 4",
-  "pad-r1-c5": "Clip Trigger – Layer 3, Column 5",
-  "pad-r1-c6": "Clip Trigger – Layer 3, Column 6",
-  "pad-r1-c7": "Clip Trigger – Layer 3, Column 7",
-  "pad-r2-c1": "Clip Trigger – Layer 2, Column 1",
-  "pad-r2-c2": "Clip Trigger – Layer 2, Column 2",
-  "pad-r2-c3": "Clip Trigger – Layer 2, Column 3",
-  "pad-r2-c4": "Clip Trigger – Layer 2, Column 4",
-  "pad-r2-c5": "Clip Trigger – Layer 2, Column 5",
-  "pad-r2-c6": "Clip Trigger – Layer 2, Column 6",
-  "pad-r2-c7": "Clip Trigger – Layer 2, Column 7",
-  "pad-r3-c1": "Clip Trigger – Layer 1, Column 1",
-  "pad-r3-c2": "Clip Trigger – Layer 1, Column 2",
-  "pad-r3-c3": "Clip Trigger – Layer 1, Column 3",
-  "pad-r3-c4": "Clip Trigger – Layer 1, Column 4",
-  "pad-r3-c5": "Clip Trigger – Layer 1, Column 5",
-  "pad-r3-c6": "Clip Trigger – Layer 1, Column 6",
-  "pad-r3-c7": "Clip Trigger – Layer 1, Column 7",
-  // Scene Launch — Trigger Column
-  "scene-1": "Trigger Column 1",
-  "scene-2": "Trigger Column 2",
-  "scene-3": "Trigger Column 3",
-  "scene-4": "Trigger Column 4",
-  "scene-5": "Trigger Column 5",
-  // Clip Stop — Clear Layer
-  "clip-stop-1": "Clear Layer 1",
-  "clip-stop-2": "Clear Layer 2",
-  "clip-stop-3": "Clear Layer 3",
-  // Track Activators — Next Clip (A|B) per layer
-  "activator-1": "Next Clip (A|B) – Layer 1",
-  "activator-2": "Next Clip (A|B) – Layer 2",
-  "activator-3": "Next Clip (A|B) – Layer 3",
-  // Crossfade Assign — Previous Clip per layer
-  "crossfade-1": "Previous Clip – Layer 1",
-  "crossfade-2": "Previous Clip – Layer 2",
-  "crossfade-3": "Previous Clip – Layer 3",
-  // Solo — Solo Layer
-  "solo-1": "Solo Layer 1",
-  "solo-2": "Solo Layer 2",
-  "solo-3": "Solo Layer 3",
-  // Record Arm — Bypass Layer
-  "recarm-1": "Bypass Layer 1",
-  "recarm-2": "Bypass Layer 2",
-  "recarm-3": "Bypass Layer 3",
-  // Faders
-  "fader-1": "Master Fader – Layer 1",
-  "fader-2": "Master Fader – Layer 2",
-  "fader-3": "Master Fader – Layer 3",
-  "fader-master": "Composition Master Fader",
-  // Transport / BPM
-  "play":    "BPM Resync",
-  "session": "BPM Tap",
-  "tempo":   "BPM Adjust",
-  // Device Control Knobs — Dashboard Dials (Composition)
-  "dc-knob-1": "Dashboard Dial 1 – Composition",
-  "dc-knob-2": "Dashboard Dial 2 – Composition",
-  "dc-knob-3": "Dashboard Dial 3 – Composition",
-  "dc-knob-4": "Dashboard Dial 4 – Composition",
-  // Device / Bank navigation
-  "dev-left":  "Select Layer ←",
-  "dev-right": "Select Layer →",
-  "bank-left":  "Previous Deck",
-  "bank-right": "Next Deck",
-  // Device control buttons
-  "dev-on":        "Eject All Clips",
-  "dev-lock":      "Preview Composition",
-  "clip-dev-view": "Playhead Active Clip",
-  // Bank Select arrows — Trigger Next / Previous Column
-  "bsel-left":  "Trigger Previous Column",
-  "bsel-right": "Trigger Next Column",
-};
 
 // Calibrated 2026-05-07 against APC40mkIII_ortho_web_lg_1778105759979.webp (1200×750)
 const DEFAULT_ZONES: Zone[] = [
@@ -260,25 +177,12 @@ const DEFAULT_ZONES: Zone[] = [
   { id: "bsel-right", label: "Bank Select →", type: "button", x: 74.92, y: 72.37, w: 1.58, h: 8.77 },
 ];
 
-// Merge Resolume mappings into the default zone list
-const BAKED_ZONES: Zone[] = DEFAULT_ZONES.map((z) => ({
-  ...z,
-  ...(RESOLUME[z.id] ? { resolume: RESOLUME[z.id] } : {}),
-}));
-
 function loadZones(): Zone[] {
   try {
     const raw = localStorage.getItem(STORAGE_KEY);
-    if (raw) {
-      const parsed: Zone[] = JSON.parse(raw);
-      // Always re-apply Resolume mappings — localStorage strips them on save
-      return parsed.map((z) => ({
-        ...z,
-        ...(RESOLUME[z.id] ? { resolume: RESOLUME[z.id] } : { resolume: undefined }),
-      }));
-    }
+    if (raw) return JSON.parse(raw);
   } catch {}
-  return BAKED_ZONES;
+  return DEFAULT_ZONES;
 }
 
 // ── Calibration zone drag/resize ──────────────────────────────────────────────
@@ -397,42 +301,18 @@ function ZoneEditor({
   );
 }
 
-function Tooltip({ zone }: { zone: Zone }) {
-  const { label, type, resolume, x, y } = zone;
+function Tooltip({ label, x, y }: { label: string; x: number; y: number }) {
   return (
     <div style={{
       position: "absolute",
       ...(x > 55 ? { right: "105%" } : { left: "105%" }),
       ...(y > 70 ? { bottom: 0 } : { top: 0 }),
-      background: "rgba(10,10,14,0.98)", border: "1px solid rgba(255,255,255,0.12)",
-      borderRadius: 7, padding: "9px 12px", whiteSpace: "nowrap",
-      fontFamily: "monospace", pointerEvents: "none", zIndex: 100,
-      boxShadow: "0 6px 20px rgba(0,0,0,0.8)", minWidth: 160,
+      background: "rgba(12,12,16,0.97)", border: "1px solid rgba(255,255,255,0.15)",
+      borderRadius: 5, padding: "5px 9px", whiteSpace: "nowrap",
+      fontSize: 11, fontFamily: "monospace", color: "#e2e8f0",
+      pointerEvents: "none", zIndex: 100, boxShadow: "0 4px 14px rgba(0,0,0,0.7)",
     }}>
-      <div style={{ fontSize: 12, fontWeight: "bold", color: "#e2e8f0", marginBottom: 3 }}>
-        {label}
-      </div>
-      <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: 0.8, marginBottom: resolume ? 8 : 0 }}>
-        {type}
-      </div>
-      {resolume && (
-        <div style={{
-          borderTop: "1px solid rgba(255,255,255,0.08)", paddingTop: 7,
-          display: "flex", alignItems: "flex-start", gap: 7,
-        }}>
-          <span style={{
-            fontSize: 8, fontWeight: "bold", color: "#00c4a0",
-            background: "rgba(0,196,160,0.12)", border: "1px solid rgba(0,196,160,0.3)",
-            borderRadius: 3, padding: "2px 5px", flexShrink: 0, letterSpacing: 0.6,
-            marginTop: 1,
-          }}>
-            RESOLUME
-          </span>
-          <span style={{ fontSize: 11, color: "#5eead4", lineHeight: 1.35 }}>
-            {resolume}
-          </span>
-        </div>
-      )}
+      {label}
     </div>
   );
 }
@@ -460,7 +340,7 @@ export default function Home() {
   };
 
   const reset = () => {
-    setZones(BAKED_ZONES);
+    setZones(DEFAULT_ZONES);
     localStorage.removeItem(STORAGE_KEY);
   };
 
@@ -593,7 +473,7 @@ export default function Home() {
                   boxSizing: "border-box", transition: "background 0.08s, border-color 0.08s",
                 }}
               >
-                {isActive && <Tooltip zone={zone} />}
+                {isActive && <Tooltip label={zone.label} x={zone.x} y={zone.y} />}
               </div>
             );
           })
