@@ -17,11 +17,7 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "ak-1": "Dashboard Dial Hue \u2014 Layer 1",
   "ak-2": "Dashboard Dial Hue \u2014 Layer 2",
   "ak-3": "Dashboard Dial Hue \u2014 Layer 3",
-  "ak-4": null,
-  "ak-5": null,
-  "ak-6": null,
-  "ak-7": null,
-  "ak-8": null,
+  "ak-4": null, "ak-5": null, "ak-6": null, "ak-7": null, "ak-8": null,
   "pad-r1-c1": "Clip Trigger \u2014 Row 1, Col 1",
   "pad-r1-c2": "Clip Trigger \u2014 Row 1, Col 2",
   "pad-r1-c3": "Clip Trigger \u2014 Row 1, Col 3",
@@ -30,14 +26,8 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "pad-r1-c6": "Clip Trigger \u2014 Row 1, Col 6",
   "pad-r1-c7": "Clip Trigger \u2014 Row 1, Col 7",
   "pad-r1-c8": null,
-  "pad-r2-c1": null,
-  "pad-r2-c2": null,
-  "pad-r2-c3": null,
-  "pad-r2-c4": null,
-  "pad-r2-c5": null,
-  "pad-r2-c6": null,
-  "pad-r2-c7": null,
-  "pad-r2-c8": null,
+  "pad-r2-c1": null, "pad-r2-c2": null, "pad-r2-c3": null, "pad-r2-c4": null,
+  "pad-r2-c5": null, "pad-r2-c6": null, "pad-r2-c7": null, "pad-r2-c8": null,
   "pad-r3-c1": "Clip Trigger \u2014 Layer 1, Col 1",
   "pad-r3-c2": "Clip Trigger \u2014 Layer 1, Col 2",
   "pad-r3-c3": "Clip Trigger \u2014 Layer 1, Col 3",
@@ -62,104 +52,44 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "pad-r5-c6": "Clip Trigger \u2014 Layer 3, Col 6",
   "pad-r5-c7": "Clip Trigger \u2014 Layer 3, Col 7",
   "pad-r5-c8": null,
-  "scene-1": null,
-  "scene-2": null,
-  "scene-3": "Scene Launch 3",
-  "scene-4": "Scene Launch 4",
-  "scene-5": "Scene Launch 5",
+  "scene-1": null, "scene-2": null,
+  "scene-3": "Scene Launch 3", "scene-4": "Scene Launch 4", "scene-5": "Scene Launch 5",
   "stop-all": "Stop All Clips",
-  "clip-stop-1": "Clear Layer 1",
-  "clip-stop-2": "Clear Layer 2",
-  "clip-stop-3": "Clear Layer 3",
-  "clip-stop-4": null,
-  "clip-stop-5": null,
-  "clip-stop-6": null,
-  "clip-stop-7": null,
-  "clip-stop-8": null,
+  "clip-stop-1": "Clear Layer 1", "clip-stop-2": "Clear Layer 2", "clip-stop-3": "Clear Layer 3",
+  "clip-stop-4": null, "clip-stop-5": null, "clip-stop-6": null, "clip-stop-7": null, "clip-stop-8": null,
   "track-sel-1": "Next (A|B) / Previous Clip \u2014 Layer 1",
   "track-sel-2": "Next (A|B) / Previous Clip \u2014 Layer 2",
   "track-sel-3": "Next (A|B) / Previous Clip \u2014 Layer 3",
-  "track-sel-4": null,
-  "track-sel-5": null,
-  "track-sel-6": null,
-  "track-sel-7": null,
-  "track-sel-8": null,
+  "track-sel-4": null, "track-sel-5": null, "track-sel-6": null, "track-sel-7": null, "track-sel-8": null,
   "track-sel-master": "Master Track Selector",
-  "activator-1": "Solo \u2014 Layer 1",
-  "activator-2": "Solo \u2014 Layer 2",
-  "activator-3": "Solo \u2014 Layer 3",
-  "activator-4": null,
-  "activator-5": null,
-  "activator-6": null,
-  "activator-7": null,
-  "activator-8": null,
-  "crossfade-1": "Bypass \u2014 Layer 1",
-  "crossfade-2": "Bypass \u2014 Layer 2",
-  "crossfade-3": "Bypass \u2014 Layer 3",
-  "crossfade-4": null,
-  "crossfade-5": null,
-  "crossfade-6": null,
-  "crossfade-7": null,
-  "crossfade-8": null,
-  "solo-1": "Master Fader \u2014 Layer 1",
-  "solo-2": "Master Fader \u2014 Layer 2",
-  "solo-3": "Master Fader \u2014 Layer 3",
-  "solo-4": null,
-  "solo-5": null,
-  "solo-6": null,
-  "solo-7": null,
-  "solo-8": null,
-  "recarm-1": "Record Arm \u2014 Layer 1",
-  "recarm-2": "Record Arm \u2014 Layer 2",
-  "recarm-3": "Record Arm \u2014 Layer 3",
-  "recarm-4": null,
-  "recarm-5": null,
-  "recarm-6": null,
-  "recarm-7": null,
-  "recarm-8": null,
+  "activator-1": "Solo \u2014 Layer 1", "activator-2": "Solo \u2014 Layer 2", "activator-3": "Solo \u2014 Layer 3",
+  "activator-4": null, "activator-5": null, "activator-6": null, "activator-7": null, "activator-8": null,
+  "crossfade-1": "Bypass \u2014 Layer 1", "crossfade-2": "Bypass \u2014 Layer 2", "crossfade-3": "Bypass \u2014 Layer 3",
+  "crossfade-4": null, "crossfade-5": null, "crossfade-6": null, "crossfade-7": null, "crossfade-8": null,
+  "solo-1": "Master Fader \u2014 Layer 1", "solo-2": "Master Fader \u2014 Layer 2", "solo-3": "Master Fader \u2014 Layer 3",
+  "solo-4": null, "solo-5": null, "solo-6": null, "solo-7": null, "solo-8": null,
+  "recarm-1": "Record Arm \u2014 Layer 1", "recarm-2": "Record Arm \u2014 Layer 2", "recarm-3": "Record Arm \u2014 Layer 3",
+  "recarm-4": null, "recarm-5": null, "recarm-6": null, "recarm-7": null, "recarm-8": null,
   "fader-1": "Composition Master Fader",
-  "fader-2": "Layer Fader \u2014 Layer 2",
-  "fader-3": "Layer Fader \u2014 Layer 3",
-  "fader-4": null,
-  "fader-5": null,
-  "fader-6": null,
-  "fader-7": null,
-  "fader-8": null,
+  "fader-2": "Layer Fader \u2014 Layer 2", "fader-3": "Layer Fader \u2014 Layer 3",
+  "fader-4": null, "fader-5": null, "fader-6": null, "fader-7": null, "fader-8": null,
   "fader-master": "Master Volume Fader",
   "cue-level": "Cue Level",
-  "crossfader": null,
-  "pan": null,
-  "play": null,
-  "record": null,
-  "session": null,
-  "sends": null,
-  "metro": "BPM Resync",
-  "tap": "BPM Tap",
-  "tempo": "BPM Adjust",
-  "user": null,
-  "nudge-minus": null,
-  "nudge-plus": null,
+  "crossfader": null, "pan": null, "play": null, "record": null, "session": null, "sends": null,
+  "metro": "BPM Resync", "tap": "BPM Tap", "tempo": "BPM Adjust",
+  "user": null, "nudge-minus": null, "nudge-plus": null,
   "dc-knob-1": "Dashboard Dial \u2014 Composition 1",
   "dc-knob-2": "Dashboard Dial \u2014 Composition 2",
   "dc-knob-3": "Dashboard Dial \u2014 Composition 3",
   "dc-knob-4": "Dashboard Dial \u2014 Composition 4",
-  "dc-knob-5": "Select Layer 1",
-  "dc-knob-6": "Select Layer 2",
-  "dc-knob-7": "Select Layer 3",
+  "dc-knob-5": "Select Layer 1", "dc-knob-6": "Select Layer 2", "dc-knob-7": "Select Layer 3",
   "dc-knob-8": "Eject All Clips / Preview Composition",
-  "dev-left": null,
-  "dev-right": null,
-  "bank-left": "Previous Deck",
-  "bank-right": "Next Deck",
-  "dev-on": null,
-  "dev-lock": null,
-  "clip-dev-view": "Playhead Active Clip",
-  "detail-view": null,
-  "shift": null,
-  "bank-btn": null,
-  "bsel-up": null,
-  "bsel-left": "Trigger Previous Column",
-  "bsel-down": null,
+  "dev-left": null, "dev-right": null,
+  "bank-left": "Previous Deck", "bank-right": "Next Deck",
+  "dev-on": null, "dev-lock": null,
+  "clip-dev-view": "Playhead Active Clip", "detail-view": null,
+  "shift": null, "bank-btn": null, "bsel-up": null,
+  "bsel-left": "Trigger Previous Column", "bsel-down": null,
   "bsel-right": "Trigger Next Column",
 };
 
@@ -352,35 +282,20 @@ interface DragState {
 }
 
 function ZoneEditor({
-  zone,
-  onUpdate,
-  selected,
-  onSelect,
+  zone, onUpdate, selected, onSelect,
 }: {
-  zone: Zone;
-  onUpdate: (z: Zone) => void;
-  selected: boolean;
-  onSelect: (id: string) => void;
+  zone: Zone; onUpdate: (z: Zone) => void; selected: boolean; onSelect: (id: string) => void;
 }) {
   const dragRef = useRef<DragState | null>(null);
   const colors = ZONE_COLORS_CALIBRATE[zone.type];
 
   const startDrag = useCallback((e: React.MouseEvent, handle: Handle) => {
-    e.stopPropagation();
-    e.preventDefault();
+    e.stopPropagation(); e.preventDefault();
     onSelect(zone.id);
     const img = (e.currentTarget.closest("[data-imgcontainer]") as HTMLElement);
     if (!img) return;
     const rect = img.getBoundingClientRect();
-    dragRef.current = {
-      zoneId: zone.id,
-      handle,
-      startMouseX: e.clientX,
-      startMouseY: e.clientY,
-      startZone: { ...zone },
-      imgW: rect.width,
-      imgH: rect.height,
-    };
+    dragRef.current = { zoneId: zone.id, handle, startMouseX: e.clientX, startMouseY: e.clientY, startZone: { ...zone }, imgW: rect.width, imgH: rect.height };
     const onMove = (mv: MouseEvent) => {
       if (!dragRef.current) return;
       const { handle, startMouseX, startMouseY, startZone, imgW, imgH } = dragRef.current;
@@ -394,126 +309,43 @@ function ZoneEditor({
       if (handle === "n" || handle === "ne" || handle === "nw") { y += dy; h = Math.max(0.5, startZone.h - dy); }
       onUpdate({ ...zone, x: Math.max(0, x), y: Math.max(0, y), w, h });
     };
-    const onUp = () => {
-      dragRef.current = null;
-      window.removeEventListener("mousemove", onMove);
-      window.removeEventListener("mouseup", onUp);
-    };
+    const onUp = () => { dragRef.current = null; window.removeEventListener("mousemove", onMove); window.removeEventListener("mouseup", onUp); };
     window.addEventListener("mousemove", onMove);
     window.addEventListener("mouseup", onUp);
   }, [zone, onUpdate, onSelect]);
 
   const HS = 9;
   const hStyle = (cursor: string, top?: string | number, left?: string | number, bottom?: string | number, right?: string | number, transform?: string): React.CSSProperties => ({
-    position: "absolute", width: HS, height: HS, background: "#fff",
-    border: "1.5px solid #000", borderRadius: 2, cursor,
+    position: "absolute", width: HS, height: HS, background: "#fff", border: "1.5px solid #000", borderRadius: 2, cursor,
     ...(top !== undefined ? { top } : {}), ...(left !== undefined ? { left } : {}),
     ...(bottom !== undefined ? { bottom } : {}), ...(right !== undefined ? { right } : {}),
-    transform: transform ?? "translate(-50%,-50%)",
-    zIndex: 20,
+    transform: transform ?? "translate(-50%,-50%)", zIndex: 20,
   });
 
   return (
     <div
       onMouseDown={(e) => startDrag(e, "move")}
       style={{
-        position: "absolute",
-        left: `${zone.x}%`, top: `${zone.y}%`,
-        width: `${zone.w}%`, height: `${zone.h}%`,
+        position: "absolute", left: `${zone.x}%`, top: `${zone.y}%`, width: `${zone.w}%`, height: `${zone.h}%`,
         background: selected ? colors.bg.replace("0.22", "0.45") : colors.bg,
-        border: `2px solid ${colors.border}`,
-        borderRadius: 3,
-        cursor: "move",
-        boxSizing: "border-box",
-        userSelect: "none",
-        zIndex: selected ? 15 : 10,
-        outline: selected ? `2px solid white` : "none",
-        outlineOffset: 1,
+        border: `2px solid ${colors.border}`, borderRadius: 3, cursor: "move",
+        boxSizing: "border-box", userSelect: "none", zIndex: selected ? 15 : 10,
+        outline: selected ? `2px solid white` : "none", outlineOffset: 1,
       }}
     >
-      <span style={{
-        position: "absolute", top: 1, left: 2, right: 2,
-        fontSize: 7, fontFamily: "monospace", color: "#fff",
-        textShadow: "0 0 3px #000", whiteSpace: "nowrap", overflow: "hidden",
-        textOverflow: "ellipsis", pointerEvents: "none", lineHeight: 1.2,
-      }}>
+      <span style={{ position: "absolute", top: 1, left: 2, right: 2, fontSize: 7, fontFamily: "monospace", color: "#fff", textShadow: "0 0 3px #000", whiteSpace: "nowrap", overflow: "hidden", textOverflow: "ellipsis", pointerEvents: "none", lineHeight: 1.2 }}>
         {zone.label}
       </span>
       {selected && <>
-        <div style={hStyle("nw-resize", -HS/2, -HS/2, undefined, undefined, "none")}         onMouseDown={(e) => startDrag(e, "nw")} />
+        <div style={hStyle("nw-resize", -HS/2, -HS/2, undefined, undefined, "none")}           onMouseDown={(e) => startDrag(e, "nw")} />
         <div style={hStyle("n-resize",  -HS/2, undefined, undefined, undefined, "translateX(-50%)")} onMouseDown={(e) => startDrag(e, "n")} />
-        <div style={hStyle("ne-resize", -HS/2, undefined, undefined, -HS/2, "none")}         onMouseDown={(e) => startDrag(e, "ne")} />
+        <div style={hStyle("ne-resize", -HS/2, undefined, undefined, -HS/2, "none")}           onMouseDown={(e) => startDrag(e, "ne")} />
         <div style={hStyle("e-resize",  "50%", undefined, undefined, -HS/2, "translateY(-50%)")} onMouseDown={(e) => startDrag(e, "e")} />
-        <div style={hStyle("se-resize", undefined, undefined, -HS/2, -HS/2, "none")}         onMouseDown={(e) => startDrag(e, "se")} />
+        <div style={hStyle("se-resize", undefined, undefined, -HS/2, -HS/2, "none")}           onMouseDown={(e) => startDrag(e, "se")} />
         <div style={hStyle("s-resize",  undefined, "50%", -HS/2, undefined, "translateX(-50%)")} onMouseDown={(e) => startDrag(e, "s")} />
-        <div style={hStyle("sw-resize", undefined, -HS/2, -HS/2, undefined, "none")}         onMouseDown={(e) => startDrag(e, "sw")} />
+        <div style={hStyle("sw-resize", undefined, -HS/2, -HS/2, undefined, "none")}           onMouseDown={(e) => startDrag(e, "sw")} />
         <div style={hStyle("w-resize",  "50%", -HS/2, undefined, undefined, "translateY(-50%)")} onMouseDown={(e) => startDrag(e, "w")} />
       </>}
-    </div>
-  );
-}
-
-function Tooltip({ zone }: { zone: Zone }) {
-  const mapped = RESOLUME_MAP[zone.id] ?? null;
-  const isLeft = zone.x > 55;
-
-  return (
-    <div style={{
-      position: "absolute",
-      ...(isLeft ? { right: "105%" } : { left: "105%" }),
-      ...(zone.y > 70 ? { bottom: 0 } : { top: 0 }),
-      background: "#0c1220",
-      borderRadius: 10,
-      width: 280,
-      overflow: "hidden",
-      pointerEvents: "none",
-      zIndex: 100,
-      boxShadow: "0 10px 40px rgba(0,0,0,0.95), 0 0 0 1px rgba(255,255,255,0.07)",
-    }}>
-      <div style={{
-        padding: "10px 16px 8px",
-        borderBottom: "1px solid #1e293b",
-        background: "#111827",
-      }}>
-        <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 4, fontFamily: "monospace" }}>
-          Hardware Control
-        </div>
-        <div style={{ fontSize: 14, color: "#e2e8f0", fontWeight: "bold", lineHeight: 1.3, fontFamily: "monospace" }}>
-          {zone.label}
-        </div>
-      </div>
-      <div style={{ padding: "10px 16px 12px" }}>
-        <div style={{ fontSize: 9, color: "#475569", textTransform: "uppercase", letterSpacing: "0.1em", marginBottom: 6, fontFamily: "monospace" }}>
-          Resolume Arena Default
-        </div>
-        {mapped ? (
-          <>
-            <div style={{ fontSize: 14, color: "#22c55e", fontWeight: "bold", lineHeight: 1.4, fontFamily: "monospace" }}>
-              {mapped}
-            </div>
-            <div style={{
-              display: "inline-block", borderRadius: 4, fontSize: 10, padding: "2px 9px",
-              marginTop: 8, fontWeight: "bold", letterSpacing: "0.05em", fontFamily: "monospace",
-              background: "rgba(34,197,94,0.2)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.5)",
-            }}>
-              ✓ MAPPED
-            </div>
-          </>
-        ) : (
-          <>
-            <div style={{ fontSize: 13, color: "#f87171", lineHeight: 1.4, fontFamily: "monospace" }}>
-              Not assigned in default mapping
-            </div>
-            <div style={{
-              display: "inline-block", borderRadius: 4, fontSize: 10, padding: "2px 9px",
-              marginTop: 8, fontWeight: "bold", letterSpacing: "0.05em", fontFamily: "monospace",
-              background: "rgba(239,68,68,0.15)", color: "#f87171", border: "1px solid rgba(239,68,68,0.4)",
-            }}>
-              ○ UNMAPPED — available to assign
-            </div>
-          </>
-        )}
-      </div>
     </div>
   );
 }
@@ -523,16 +355,43 @@ const IMAGE_FILENAME = "APC40mkIII_ortho_web_lg_1778105759979.webp";
 export default function Home() {
   const [zones, setZones] = useState<Zone[]>(loadZones);
   const [calibrating, setCalibrating] = useState(false);
-  const [activeZone, setActiveZone] = useState<string | null>(null);
+  const [activeZone, setActiveZone] = useState<Zone | null>(null);
+  const [isTouchActive, setIsTouchActive] = useState(false);
   const [selectedId, setSelectedId] = useState<string | null>(null);
   const [saved, setSaved] = useState(false);
   const [showExport, setShowExport] = useState(false);
   const [copied, setCopied] = useState(false);
   const [infoText, setInfoText] = useState<{ label: string; mapped: string | null } | null>(null);
   const imgRef = useRef<HTMLImageElement>(null);
+  const tooltipRef = useRef<HTMLDivElement>(null);
 
   const mappedCount = zones.filter(z => RESOLUME_MAP[z.id] != null).length;
   const unmappedCount = zones.length - mappedCount;
+
+  const positionTooltip = useCallback((mx: number, my: number) => {
+    const tip = tooltipRef.current;
+    if (!tip) return;
+    const tw = 290, pad = 18, vw = window.innerWidth, vh = window.innerHeight;
+    let left = mx + pad, top = my + pad;
+    if (left + tw > vw - pad) left = mx - tw - pad;
+    if (top + tip.offsetHeight > vh - pad) top = my - tip.offsetHeight - pad;
+    if (left < pad) left = pad;
+    if (top < pad) top = pad;
+    tip.style.left = left + "px";
+    tip.style.top = top + "px";
+  }, []);
+
+  const showZone = useCallback((zone: Zone, mx: number, my: number, touch: boolean) => {
+    setActiveZone(zone);
+    setIsTouchActive(touch);
+    setInfoText({ label: zone.label, mapped: RESOLUME_MAP[zone.id] ?? null });
+    requestAnimationFrame(() => positionTooltip(mx, my));
+  }, [positionTooltip]);
+
+  const hideZone = useCallback(() => {
+    setActiveZone(null);
+    setInfoText(null);
+  }, []);
 
   const updateZone = useCallback((updated: Zone) => {
     setZones((prev) => prev.map((z) => (z.id === updated.id ? updated : z)));
@@ -544,169 +403,139 @@ export default function Home() {
     setTimeout(() => setSaved(false), 1500);
   };
 
-  const reset = () => {
-    setZones(DEFAULT_ZONES);
-    localStorage.removeItem(STORAGE_KEY);
-  };
+  const reset = () => { setZones(DEFAULT_ZONES); localStorage.removeItem(STORAGE_KEY); };
 
   const buildExportPayload = () => {
     const img = imgRef.current;
     return {
-      image: {
-        filename: IMAGE_FILENAME,
-        naturalWidth:  img?.naturalWidth  ?? null,
-        naturalHeight: img?.naturalHeight ?? null,
-        note: "Zone x/y/w/h values are percentages of the rendered image dimensions",
-      },
-      exportedAt: new Date().toISOString(),
-      zones,
+      image: { filename: IMAGE_FILENAME, naturalWidth: img?.naturalWidth ?? null, naturalHeight: img?.naturalHeight ?? null, note: "Zone x/y/w/h values are percentages of the rendered image dimensions" },
+      exportedAt: new Date().toISOString(), zones,
     };
   };
 
   const [jsonText, setJsonText] = useState("");
-
-  const exportJson = () => {
-    setJsonText(JSON.stringify(buildExportPayload(), null, 2));
-    setShowExport(true);
-  };
-
+  const exportJson = () => { setJsonText(JSON.stringify(buildExportPayload(), null, 2)); setShowExport(true); };
   const copyJson = () => {
-    navigator.clipboard.writeText(jsonText).then(() => {
-      setCopied(true);
-      setTimeout(() => setCopied(false), 2000);
-    });
+    navigator.clipboard.writeText(jsonText).then(() => { setCopied(true); setTimeout(() => setCopied(false), 2000); });
   };
-
-  const exitCalibrate = () => {
-    save();
-    setCalibrating(false);
-    setSelectedId(null);
-  };
+  const exitCalibrate = () => { save(); setCalibrating(false); setSelectedId(null); };
 
   useEffect(() => {
     if (calibrating) localStorage.setItem(STORAGE_KEY, JSON.stringify(zones));
   }, [zones, calibrating]);
 
+  useEffect(() => {
+    const handler = (e: TouchEvent | MouseEvent) => {
+      if (!activeZone) return;
+      const target = e.target as HTMLElement;
+      if (tooltipRef.current?.contains(target)) return;
+      if (target.dataset?.zoneId) return;
+      hideZone();
+    };
+    document.addEventListener("touchstart", handler, { passive: true });
+    document.addEventListener("click", handler);
+    return () => { document.removeEventListener("touchstart", handler); document.removeEventListener("click", handler); };
+  }, [activeZone, hideZone]);
+
+  const mapped = activeZone ? RESOLUME_MAP[activeZone.id] ?? null : null;
+
+  const btnStyle = (color: string, active = false): React.CSSProperties => ({
+    padding: "4px 12px", borderRadius: 5, border: `1px solid ${color}`,
+    background: active ? color : "transparent", color: active ? "#000" : color,
+    fontFamily: "monospace", fontSize: 11, cursor: "pointer",
+  });
+
   return (
-    <div style={{
-      minHeight: "100vh", width: "100%", background: "#0d0d0f",
-      display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center",
-      padding: 12, boxSizing: "border-box", gap: 10,
-      fontFamily: "'Courier New', monospace",
-    }}>
+    <div
+      style={{ minHeight: "100vh", width: "100%", background: "#0d0d0f", display: "flex", flexDirection: "column", alignItems: "center", padding: 12, boxSizing: "border-box", gap: 10, fontFamily: "'Inter', system-ui, sans-serif", WebkitUserSelect: "none", userSelect: "none" }}
+      onClick={(e) => { if (activeZone && !(e.target as HTMLElement).dataset?.zoneId) hideZone(); }}
+    >
       {/* Toolbar */}
-      <div style={{
-        display: "flex", alignItems: "center", gap: 10, flexShrink: 0, flexWrap: "wrap",
-        background: "#1a1a20", border: "1px solid #2a2a32", borderRadius: 8, padding: "8px 14px",
-      }}>
+      <div style={{ display: "flex", alignItems: "center", gap: 10, flexWrap: "wrap", background: "#1a1a20", border: "1px solid #2a2a32", borderRadius: 8, padding: "8px 14px", width: "100%", maxWidth: 1200 }}>
         {!calibrating ? (
           <>
-            <span style={{ fontSize: 12, color: "#e2e8f0", fontWeight: "bold" }}>
-              APC40 mkII — Resolume Arena Mapping
-            </span>
-            <span style={{
-              fontSize: 11, padding: "4px 11px", borderRadius: 5,
-              background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)",
-            }}>
-              ● {mappedCount} mapped
-            </span>
-            <span style={{
-              fontSize: 11, padding: "4px 11px", borderRadius: 5,
-              background: "rgba(239,68,68,0.12)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)",
-            }}>
-              ● {unmappedCount} unmapped
-            </span>
-            <button
-              onClick={() => setCalibrating(true)}
-              style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #f97316", background: "transparent", color: "#f97316", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}
-            >
-              Calibrate Zones
-            </button>
-            <button
-              onClick={exportJson}
-              style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #38bdf8", background: "transparent", color: "#38bdf8", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}
-            >
-              Export JSON
-            </button>
+            <span style={{ fontSize: 12, fontWeight: 600, color: "#e2e8f0", letterSpacing: "0.01em" }}>APC40 mkII — Resolume Mapping</span>
+            <span style={{ fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 5, background: "rgba(34,197,94,0.15)", color: "#22c55e", border: "1px solid rgba(34,197,94,0.4)" }}>● {mappedCount} mapped</span>
+            <span style={{ fontSize: 11, fontWeight: 500, padding: "4px 11px", borderRadius: 5, background: "rgba(239,68,68,0.12)", color: "#ef4444", border: "1px solid rgba(239,68,68,0.3)" }}>● {unmappedCount} unmapped</span>
+            <button onClick={() => setCalibrating(true)} style={btnStyle("#f97316")}>Calibrate Zones</button>
+            <button onClick={exportJson} style={btnStyle("#38bdf8")}>Export JSON</button>
           </>
         ) : (
           <>
-            <span style={{ fontSize: 12, color: "#fcd34d" }}>
-              Calibration Mode — drag zones, resize with corner handles
-            </span>
-            <button onClick={save}  style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #22c55e", background: saved ? "#22c55e" : "transparent", color: saved ? "#000" : "#22c55e", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}>
-              {saved ? "Saved ✓" : "Save"}
-            </button>
-            <button onClick={reset} style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #ef4444", background: "transparent", color: "#ef4444", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}>
-              Reset
-            </button>
-            <button onClick={exitCalibrate} style={{ padding: "4px 12px", borderRadius: 5, border: "1px solid #94a3b8", background: "transparent", color: "#94a3b8", fontFamily: "monospace", fontSize: 11, cursor: "pointer" }}>
-              Done
-            </button>
+            <span style={{ fontSize: 12, color: "#fcd34d", fontWeight: 500 }}>Calibration Mode — drag zones, resize with corner handles</span>
+            <button onClick={save}  style={btnStyle("#22c55e", saved)}>{saved ? "Saved ✓" : "Save"}</button>
+            <button onClick={reset} style={btnStyle("#ef4444")}>Reset</button>
+            <button onClick={exitCalibrate} style={btnStyle("#94a3b8")}>Done</button>
           </>
         )}
       </div>
 
-      {/* Legend */}
+      {/* Legend + tap hint */}
       {!calibrating && (
-        <div style={{ display: "flex", gap: 14, alignItems: "center", flexWrap: "wrap", flexShrink: 0 }}>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: "#8a8a96" }}>
-            <div style={{ width: 12, height: 12, borderRadius: 2, background: "rgba(34,197,94,0.35)", border: "1.5px solid #22c55e", flexShrink: 0 }} />
-            Mapped to Resolume
+        <>
+          <div style={{ display: "flex", gap: 12, alignItems: "center", flexWrap: "wrap", width: "100%", maxWidth: 1200 }}>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 500, color: "#8a8a96" }}>
+              <div style={{ width: 13, height: 13, borderRadius: 2, background: "rgba(34,197,94,0.35)", border: "1.5px solid #22c55e", flexShrink: 0 }} />
+              Mapped to Resolume
+            </div>
+            <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 11, fontWeight: 500, color: "#8a8a96" }}>
+              <div style={{ width: 13, height: 13, borderRadius: 2, background: "rgba(239,68,68,0.25)", border: "1.5px solid #ef4444", flexShrink: 0 }} />
+              Unmapped — available
+            </div>
           </div>
-          <div style={{ display: "flex", alignItems: "center", gap: 6, fontSize: 10, color: "#8a8a96" }}>
-            <div style={{ width: 12, height: 12, borderRadius: 2, background: "rgba(239,68,68,0.25)", border: "1.5px solid #ef4444", flexShrink: 0 }} />
-            Unmapped — available to assign
+          <div style={{ fontSize: 10, color: "#475569", textAlign: "center", width: "100%", maxWidth: 1200 }} className="tap-hint">
+            ℹ Tap any control to see its Resolume mapping
           </div>
-        </div>
+        </>
       )}
 
       {/* Image + zones */}
-      <div data-imgcontainer="" style={{ position: "relative", display: "inline-block", lineHeight: 0, flexShrink: 0 }}>
+      <div
+        data-imgcontainer=""
+        style={{ position: "relative", lineHeight: 0, width: "100%", maxWidth: 1200 }}
+        onClick={(e) => calibrating && (e.target as HTMLElement).tagName === "DIV" && setSelectedId(null)}
+      >
         <img
           ref={imgRef}
           src={apcPhoto}
           alt="APC40 MKII"
-          style={{ display: "block", maxWidth: "min(98vw, 1200px)", maxHeight: "calc(100vh - 150px)", objectFit: "contain", userSelect: "none" }}
+          style={{ display: "block", width: "100%", height: "auto", userSelect: "none", touchAction: "pan-y" }}
           draggable={false}
-          onClick={() => calibrating && setSelectedId(null)}
         />
-
         <div style={{ position: "absolute", inset: 0, background: "rgba(0,0,0,0.22)", pointerEvents: "none" }} />
 
         {calibrating ? (
           zones.map((zone) => (
-            <ZoneEditor
-              key={zone.id}
-              zone={zone}
-              onUpdate={updateZone}
-              selected={selectedId === zone.id}
-              onSelect={setSelectedId}
-            />
+            <ZoneEditor key={zone.id} zone={zone} onUpdate={updateZone} selected={selectedId === zone.id} onSelect={setSelectedId} />
           ))
         ) : (
           zones.map((zone) => {
-            const mapped = RESOLUME_MAP[zone.id] != null;
-            const s = mapped ? MAPPED_STYLE : UNMAPPED_STYLE;
-            const h = mapped ? MAPPED_HOVER : UNMAPPED_HOVER;
-            const isActive = activeZone === zone.id;
+            const isMapped = RESOLUME_MAP[zone.id] != null;
+            const s = isMapped ? MAPPED_STYLE : UNMAPPED_STYLE;
+            const h = isMapped ? MAPPED_HOVER : UNMAPPED_HOVER;
+            const isActive = activeZone?.id === zone.id;
             return (
               <div
                 key={zone.id}
-                onMouseEnter={() => { setActiveZone(zone.id); setInfoText({ label: zone.label, mapped: RESOLUME_MAP[zone.id] ?? null }); }}
-                onMouseLeave={() => { setActiveZone(null); setInfoText(null); }}
+                data-zone-id={zone.id}
+                onMouseEnter={(e) => showZone(zone, e.clientX, e.clientY, false)}
+                onMouseMove={(e) => { if (activeZone?.id === zone.id && !isTouchActive) positionTooltip(e.clientX, e.clientY); }}
+                onMouseLeave={() => { if (!isTouchActive) hideZone(); }}
+                onTouchStart={(e) => {
+                  e.preventDefault(); e.stopPropagation();
+                  if (activeZone?.id === zone.id) { hideZone(); return; }
+                  const t = e.touches[0];
+                  showZone(zone, t.clientX, t.clientY, true);
+                }}
                 style={{
-                  position: "absolute",
-                  left: `${zone.x}%`, top: `${zone.y}%`,
-                  width: `${zone.w}%`, height: `${zone.h}%`,
+                  position: "absolute", left: `${zone.x}%`, top: `${zone.y}%`, width: `${zone.w}%`, height: `${zone.h}%`,
                   background: isActive ? h.bg : s.bg,
                   border: `1.5px solid ${isActive ? h.border : s.border}`,
-                  borderRadius: 3, cursor: "crosshair",
-                  boxSizing: "border-box", transition: "background 0.08s, border-color 0.08s",
+                  borderRadius: 3, cursor: "crosshair", boxSizing: "border-box",
+                  transition: "background 0.08s, border-color 0.08s",
+                  WebkitTapHighlightColor: "transparent",
                 }}
-              >
-                {isActive && <Tooltip zone={zone} />}
-              </div>
+              />
             );
           })
         )}
@@ -714,89 +543,84 @@ export default function Home() {
 
       {/* Info bar */}
       {!calibrating && (
-        <div style={{ fontSize: 11, color: "#475569", minHeight: 18, flexShrink: 0 }}>
+        <div style={{ fontSize: 11, fontWeight: 500, color: "#475569", minHeight: 18, width: "100%", maxWidth: 1200, textAlign: "center", letterSpacing: "0.01em" }}>
           {infoText ? (
             infoText.mapped ? (
-              <>
-                <span style={{ color: "#86efac" }}>{infoText.label}</span>
-                {" "}
-                <span style={{ color: "#334155" }}>→</span>
-                {" "}
-                <span style={{ color: "#22c55e" }}>{infoText.mapped}</span>
-              </>
+              <><span style={{ color: "#86efac" }}>{infoText.label}</span> <span style={{ color: "#334155" }}>→</span> <span style={{ color: "#22c55e" }}>{infoText.mapped}</span></>
             ) : (
-              <>
-                <span style={{ color: "#fca5a5" }}>{infoText.label}</span>
-                <span style={{ color: "#ef4444" }}> — unmapped (available to assign)</span>
-              </>
+              <><span style={{ color: "#fca5a5" }}>{infoText.label}</span><span style={{ color: "#ef4444" }}> — unmapped (available to assign)</span></>
             )
-          ) : (
-            "Hover any control to see its Resolume mapping"
-          )}
+          ) : "Hover or tap any control to see its Resolume mapping"}
         </div>
       )}
 
       {calibrating && selectedId && (
-        <div style={{ fontSize: 11, fontFamily: "monospace", color: "#94a3b8", flexShrink: 0 }}>
-          Selected: <strong style={{ color: "#e2e8f0" }}>{zones.find(z => z.id === selectedId)?.label}</strong>
-          {" — "}drag to move · corner handles to resize
+        <div style={{ fontSize: 11, fontFamily: "monospace", color: "#94a3b8" }}>
+          Selected: <strong style={{ color: "#e2e8f0" }}>{zones.find(z => z.id === selectedId)?.label}</strong> — drag to move · corner handles to resize
+        </div>
+      )}
+
+      {/* Fixed tooltip — follows mouse on desktop, fixed-bottom on mobile */}
+      {activeZone && (
+        <div
+          ref={tooltipRef}
+          style={{
+            position: "fixed", zIndex: 9999, pointerEvents: isTouchActive ? "auto" : "none",
+            fontFamily: "'DM Sans', system-ui, sans-serif",
+            background: "#0c1220", borderRadius: 12, width: 290, overflow: "hidden",
+            boxShadow: "0 16px 48px rgba(0,0,0,0.9), 0 0 0 1px rgba(255,255,255,0.08)",
+          }}
+          onClick={(e) => e.stopPropagation()}
+        >
+          <div style={{ padding: "12px 16px 10px", borderBottom: "1px solid rgba(255,255,255,0.06)", background: "#111827" }}>
+            <div style={{ fontSize: 9, fontWeight: 700, color: "#4b5563", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 4 }}>Hardware Control</div>
+            <div style={{ fontSize: 15, fontWeight: 600, color: "#f1f5f9", lineHeight: 1.3, letterSpacing: "-0.01em" }}>{activeZone.label}</div>
+          </div>
+          <div style={{ padding: "11px 16px 13px" }}>
+            <div style={{ fontSize: 9, fontWeight: 700, color: "#4b5563", textTransform: "uppercase", letterSpacing: "0.12em", marginBottom: 6 }}>Resolume Arena Default</div>
+            {mapped ? (
+              <>
+                <div style={{ fontSize: 15, fontWeight: 600, color: "#22c55e", lineHeight: 1.4, letterSpacing: "-0.01em" }}>{mapped}</div>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 4, borderRadius: 20, fontSize: 10, fontWeight: 700, padding: "3px 10px", marginTop: 9, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(34,197,94,0.15)", color: "#4ade80", border: "1px solid rgba(34,197,94,0.35)" }}>
+                  ✓ Mapped
+                </div>
+              </>
+            ) : (
+              <>
+                <div style={{ fontSize: 14, fontWeight: 500, color: "#f87171", lineHeight: 1.4 }}>Not assigned in default mapping</div>
+                <div style={{ display: "inline-flex", alignItems: "center", gap: 4, borderRadius: 20, fontSize: 10, fontWeight: 700, padding: "3px 10px", marginTop: 9, letterSpacing: "0.06em", textTransform: "uppercase", background: "rgba(239,68,68,0.12)", color: "#f87171", border: "1px solid rgba(239,68,68,0.35)" }}>
+                  ○ Unmapped — available
+                </div>
+              </>
+            )}
+          </div>
+          {isTouchActive && (
+            <div
+              onClick={hideZone}
+              style={{ textAlign: "center", padding: 9, fontSize: 11, fontWeight: 500, color: "#4b5563", borderTop: "1px solid rgba(255,255,255,0.06)", cursor: "pointer" }}
+            >
+              Tap to dismiss ×
+            </div>
+          )}
         </div>
       )}
 
       {/* Export modal */}
       {showExport && (
-        <div
-          onClick={() => setShowExport(false)}
-          style={{
-            position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)",
-            display: "flex", alignItems: "center", justifyContent: "center",
-            zIndex: 200, padding: 24,
-          }}
-        >
-          <div
-            onClick={(e) => e.stopPropagation()}
-            style={{
-              background: "#16161e", border: "1px solid #2a2a38", borderRadius: 10,
-              width: "min(660px, 100%)", maxHeight: "80vh",
-              display: "flex", flexDirection: "column", gap: 0,
-              boxShadow: "0 20px 60px rgba(0,0,0,0.8)",
-            }}
-          >
+        <div onClick={() => setShowExport(false)} style={{ position: "fixed", inset: 0, background: "rgba(0,0,0,0.75)", display: "flex", alignItems: "center", justifyContent: "center", zIndex: 200, padding: 24 }}>
+          <div onClick={(e) => e.stopPropagation()} style={{ background: "#16161e", border: "1px solid #2a2a38", borderRadius: 10, width: "min(660px, 100%)", maxHeight: "80vh", display: "flex", flexDirection: "column", boxShadow: "0 20px 60px rgba(0,0,0,0.8)" }}>
             <div style={{ display: "flex", alignItems: "center", justifyContent: "space-between", padding: "12px 16px", borderBottom: "1px solid #2a2a38" }}>
               <span style={{ fontFamily: "monospace", fontSize: 13, color: "#e2e8f0" }}>
-                apc40-mkii-zones.json
-                <span style={{ marginLeft: 10, color: "#64748b", fontSize: 11 }}>
-                  {zones.length} zones
-                </span>
+                apc40-mkii-zones.json <span style={{ marginLeft: 10, color: "#64748b", fontSize: 11 }}>{zones.length} zones</span>
               </span>
               <div style={{ display: "flex", gap: 8 }}>
-                <button
-                  onClick={copyJson}
-                  style={{
-                    padding: "4px 14px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11,
-                    border: `1px solid ${copied ? "#22c55e" : "#38bdf8"}`,
-                    background: copied ? "#22c55e" : "transparent",
-                    color: copied ? "#000" : "#38bdf8",
-                    transition: "all 0.15s",
-                  }}
-                >
+                <button onClick={copyJson} style={{ padding: "4px 14px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11, border: `1px solid ${copied ? "#22c55e" : "#38bdf8"}`, background: copied ? "#22c55e" : "transparent", color: copied ? "#000" : "#38bdf8", transition: "all 0.15s" }}>
                   {copied ? "Copied ✓" : "Copy to clipboard"}
                 </button>
-                <button
-                  onClick={() => setShowExport(false)}
-                  style={{ padding: "4px 10px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11, border: "1px solid #3a3a48", background: "transparent", color: "#94a3b8" }}
-                >
-                  ✕
-                </button>
+                <button onClick={() => setShowExport(false)} style={{ padding: "4px 10px", borderRadius: 5, cursor: "pointer", fontFamily: "monospace", fontSize: 11, border: "1px solid #3a3a48", background: "transparent", color: "#94a3b8" }}>✕</button>
               </div>
             </div>
-            <pre style={{
-              margin: 0, padding: 16, overflowY: "auto", flex: 1,
-              fontFamily: "monospace", fontSize: 11, color: "#94a3b8",
-              lineHeight: 1.6, whiteSpace: "pre", background: "transparent",
-            }}>
-              {jsonText}
-            </pre>
+            <pre style={{ margin: 0, padding: 16, overflowY: "auto", flex: 1, fontFamily: "monospace", fontSize: 11, color: "#94a3b8", lineHeight: 1.6, whiteSpace: "pre", background: "transparent" }}>{jsonText}</pre>
           </div>
         </div>
       )}
