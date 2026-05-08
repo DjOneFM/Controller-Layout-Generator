@@ -71,7 +71,7 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "recarm-1": "Bypass \u2014 Layer 1", "recarm-2": "Bypass \u2014 Layer 2", "recarm-3": "Bypass \u2014 Layer 3",
   "recarm-4": null, "recarm-5": null, "recarm-6": null, "recarm-7": null, "recarm-8": null,
   "fader-1": "Composition Master Fader",
-  "fader-2": "Layer Fader \u2014 Layer 2", "fader-3": "Layer Fader \u2014 Layer 3",
+  "fader-2": "Composition Master Fader", "fader-3": "Composition Master Fader",
   "fader-4": null, "fader-5": null, "fader-6": null, "fader-7": null, "fader-8": null,
   "fader-master": "Master Volume Fader",
   "cue-level": "Cue Level",
