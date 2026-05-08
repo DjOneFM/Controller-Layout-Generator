@@ -521,9 +521,12 @@ export default function Home() {
                 onMouseLeave={() => { if (!isTouchActive) hideZone(); }}
                 onTouchStart={(e) => {
                   e.preventDefault(); e.stopPropagation();
-                  if (activeZone?.id === zone.id) { hideZone(); return; }
                   const t = e.touches[0];
                   showZone(zone, t.clientX, t.clientY, true);
+                }}
+                onTouchEnd={(e) => {
+                  e.preventDefault(); e.stopPropagation();
+                  hideZone();
                 }}
                 style={{
                   position: "absolute", left: `${zone.x}%`, top: `${zone.y}%`, width: `${zone.w}%`, height: `${zone.h}%`,
