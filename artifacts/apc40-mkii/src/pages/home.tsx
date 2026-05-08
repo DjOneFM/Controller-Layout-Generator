@@ -53,7 +53,7 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "pad-r5-c7": "Clip Trigger \u2014 Layer 1, Col 7",
   "pad-r5-c8": null,
   "scene-1": null, "scene-2": null,
-  "scene-3": "Scene Launch 3", "scene-4": "Scene Launch 4", "scene-5": "Scene Launch 5",
+  "scene-3": "Select Layer 1", "scene-4": "Select Layer 2", "scene-5": "Select Layer 3",
   "stop-all": "Stop All Clips",
   "clip-stop-1": "Clear Layer 1", "clip-stop-2": "Clear Layer 2", "clip-stop-3": "Clear Layer 3",
   "clip-stop-4": null, "clip-stop-5": null, "clip-stop-6": null, "clip-stop-7": null, "clip-stop-8": null,
