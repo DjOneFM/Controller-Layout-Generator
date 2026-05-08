@@ -72,7 +72,7 @@ const RESOLUME_MAP: Record<string, string | null> = {
   "fader-2": "Composition Master Fader", "fader-3": "Composition Master Fader",
   "fader-4": null, "fader-5": null, "fader-6": null, "fader-7": null, "fader-8": null,
   "fader-master": "Master Volume Fader",
-  "cue-level": "Cue Level",
+  "cue-level": "Playhead Active Clip",
   "crossfader": null, "pan": null, "play": null, "record": null, "session": null, "sends": null,
   "metro": "BPM Resync", "tap": "BPM Tap", "tempo": "BPM Adjust",
   "user": null, "nudge-minus": null, "nudge-plus": null,
